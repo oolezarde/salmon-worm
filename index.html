@@ -1319,7 +1319,7 @@ function renderPanel(){
   }else if(S.tab==='freezer'){
     p.hidden=false;const first=S.store.findIndex(e=>e.meat>0),tr=totalRoe();
     p.innerHTML=`<h3><span>庫存 · −35°C</span><span>${fmtG(totalMeat())}${tr?` · 卵 ${fmtG(tr)}`:''}</span></h3>`+(S.store.length
-      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">第 ${e.gen} 條 · ${e.w.toFixed(1)} kg</div><div class="sub">鮭魚肉 ${fmtG(e.meat)}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
+      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">第 ${e.gen} 條 · ${e.w.toFixed(1)} kg</div><div class="sub">${e.meat>0?`鮭魚肉 ${fmtG(e.meat)}`:'魚肉吃完了'}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
       :`<p class="empty">冷鏈倉空空的。去河口釣一條，爸爸會處理好放進來。</p>`);
   }else p.hidden=true;
 }
