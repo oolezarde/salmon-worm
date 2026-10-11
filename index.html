@@ -21,7 +21,7 @@
   --murk:#A39567; --cloth:#FCE4EA; --plate:#FFFFFF; --rice:#FFFDF7; --rice-line:#E8DDCB; --char:#B5703F; --lemon:#FBE38A; --bowl:#F0A3B7;
   --peb1:#F5DACB; --peb2:#ECD3E4; --peb3:#D4E6F0; --peb4:#F6E8C8;
   --fz:#E7F0F7; --fz-deep:#CFDDEA; --steel:#B3C1CF; --panel:#3F3442; --ice:#9EE6FF;
-  --eye:#3A2832; --hl:#FFFFFF; --shadow:#3A4F5C;
+  --eye:#3A2832; --hl:#FFFFFF; --shadow:#3A4F5C; --scrim:rgba(36,22,32,.42);
   --f-display:"Huninn","Chiron GoRound TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
   --f-body:"Chiron GoRound TC","Huninn","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
 }
@@ -66,9 +66,41 @@ body{
 .top > div{min-width:0}
 .eyebrow{display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;letter-spacing:.16em;color:var(--rose-deep)}
 .eyebrow svg{width:24px;height:15px;flex:none}
-h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px);line-height:1.12;margin:4px 0 0;letter-spacing:.03em;text-wrap:balance;color:var(--ink)}
-.tag{margin:5px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em}
-.ghost{appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);font:inherit;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;flex:none}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,6.8vw,30px);line-height:1.12;margin:3px 0 0;letter-spacing:.03em;text-wrap:balance;color:var(--ink)}
+.tag{margin:3px 0 0;font-size:13px;color:var(--ink-soft);letter-spacing:.06em}
+.ghost{appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);font:inherit;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;flex:none;white-space:nowrap}
+.hbtns{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+#mailBtn.has{background:var(--rose);border-color:var(--rose-deep);color:var(--on-rose);font-weight:700}
+
+/* 信箱 */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:30}
+.sheet{position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:480px;max-height:min(82vh,680px);display:flex;flex-direction:column;gap:10px;background:var(--card);color:var(--ink);border-radius:24px 24px 0 0;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -16px 40px -16px var(--drop);z-index:31;box-sizing:border-box}
+.sheet-head{display:flex;align-items:center;gap:10px}
+.sheet-head h2{margin:0;font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.04em}
+.sheet-head .mb-sync{margin-right:auto}
+.sheet .letters{overflow:auto;flex:1 1 auto;min-height:0;align-content:start;padding:2px}
+.mb-sync{font-size:12px;color:var(--ink-soft)}
+.letters{display:grid;gap:8px}
+.letter{border-radius:14px;background:var(--blush)}
+.letter.mine{background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line)}
+.letter.new{box-shadow:inset 0 0 0 2px var(--rose)}
+.lt-top{display:flex;gap:8px;align-items:center;padding:10px 12px;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;cursor:pointer;list-style:none}
+.lt-top::-webkit-details-marker{display:none}
+.lt-top .who{margin-top:0;flex:none}
+.lt-top .when{flex:none}
+.lt-top .pv{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13.5px;color:var(--ink)}
+.lt-top::after{content:"";flex:none;width:7px;height:7px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);margin:0 4px 3px 2px;transition:transform .2s}
+.letter[open] > .lt-top::after{transform:rotate(-135deg);margin-bottom:-3px}
+.letter[open] > .lt-top .pv{visibility:hidden}
+.newtag{flex:none;font-size:11px;padding:2px 7px;border-radius:999px;background:var(--rose);color:var(--on-rose)}
+.lt-body{display:grid;gap:8px;padding:0 12px 12px}
+.letter p{margin:0;font-size:14.5px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.gift{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:12px;background:var(--card);font-size:13px;color:var(--ink)}
+.gift .btn{min-height:38px;font-size:14px;padding:0 14px;flex:none}
+.gift .note{flex:none}
+.compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
+#toPapa{width:100%;box-sizing:border-box;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.5 var(--f-body);padding:8px 10px;resize:vertical;min-height:52px}
+.compose .btn{min-height:52px;font-size:15px}
 
 /* the lace card */
 .card{position:relative;background:var(--card);border-radius:26px;padding:12px 12px 16px;box-shadow:0 16px 30px -18px var(--drop);margin-bottom:8px;-webkit-user-select:none;user-select:none}
@@ -137,9 +169,13 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
 .btn:focus-visible,.ghost:focus-visible,.dishbtn:focus-visible{outline:3px solid var(--rose-deep);outline-offset:3px}
 
 /* lists under the scene */
-.panel{margin-top:12px;padding:12px;border-radius:16px;background:var(--blush);display:grid;gap:8px}
-.panel h3{margin:0;font-size:12.5px;letter-spacing:.12em;color:var(--ink-soft);font-weight:700;display:flex;justify-content:space-between;gap:8px}
-.panel h3 span:last-child{letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.panel{margin-top:12px;border-radius:16px;background:var(--blush)}
+.fold{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:11px 12px;font-size:12.5px;letter-spacing:.12em;color:var(--ink-soft);font-weight:700}
+.fold::-webkit-details-marker{display:none}
+.fold .num{margin-left:auto;letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.fold::after{content:"";flex:none;width:7px;height:7px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);margin:0 4px 3px 4px;transition:transform .2s}
+details[open] > .fold::after{transform:rotate(-135deg);margin-bottom:-3px}
+.panel-body{display:grid;gap:8px;padding:0 12px 12px}
 .sea-list{display:flex;flex-wrap:wrap;gap:6px}
 .fishpill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:999px;background:var(--card);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
 .mini{width:30px;height:14px;flex:none;overflow:visible}
@@ -157,7 +193,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
 .empty{font-size:13.5px}
 
 /* growth ribbon */
-.journey{display:grid;gap:10px;padding:2px 4px}
+.journey{display:grid;gap:8px;margin:14px 4px 0}
 .label{margin:0;font-size:12px;letter-spacing:.16em;color:var(--ink-soft)}
 .stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;position:relative}
 .stages::before{content:"";position:absolute;left:7%;right:7%;top:7px;height:2px;background:var(--line)}
@@ -168,7 +204,11 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
 .stages li.now{color:var(--ink);font-weight:700}
 
 /* record slip */
-.record{border:2px dashed var(--line);border-radius:18px;padding:12px 14px;display:grid;gap:10px;background:var(--card)}
+.record{border:2px dashed var(--line);border-radius:18px;background:var(--card)}
+.rec-sum{padding:12px 14px}
+.rec-sum .label{flex:none}
+.rec-sum .brief{margin-left:auto;font-size:12.5px;letter-spacing:.02em;color:var(--ink);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;font-variant-numeric:tabular-nums}
+.recbody{display:grid;gap:10px;padding:0 14px 14px}
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px}
 .stat{min-width:0}
 .stat b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -224,7 +264,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
       <h1>鮭魚蟲餵養計畫</h1>
       <p class="tag">養很多條，存在海裡，凍在倉裡，慢慢吃。</p>
     </div>
-    <button id="soundBtn" class="ghost" type="button" aria-pressed="true">聲音 開</button>
+    <div class="hbtns"><button id="mailBtn" class="ghost" type="button" hidden>信箱</button><button id="soundBtn" class="ghost" type="button" aria-pressed="true">聲音 開</button></div>
   </header>
 
   <section class="card" aria-label="遊戲畫面">
@@ -455,22 +495,23 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
       <div class="meter" id="mtGrow"><div class="mlab"><span>成長</span><b id="vGrow">0%</b></div><div class="track"><i id="mGrow" style="width:0%"></i></div></div>
     </div>
 
+    <div class="journey" id="journey">
+      <p class="label" id="journeyLbl">第 1 條的成長</p>
+      <ol class="stages" id="stages"></ol>
+    </div>
+
     <div class="reel" id="reel" hidden>
       <div class="reel-track" id="track"><div class="zone" id="zone"></div><div class="rfish" id="rfish"></div></div>
       <div class="reel-prog"><span>收線進度</span><div class="pbar"><i id="prog"></i></div></div>
     </div>
 
     <div class="actions three" id="actions"></div>
-    <div class="panel" id="panel" hidden></div>
+    <details class="panel" id="panel" hidden><summary class="fold" id="panelSum"></summary><div class="panel-body" id="panelBody"></div></details>
   </section>
 
-  <section class="journey" aria-label="魚缸裡這條的成長">
-    <p class="label" id="journeyLbl">第 1 條的成長</p>
-    <ol class="stages" id="stages"></ol>
-  </section>
-
-  <section class="record" aria-label="飼育記錄">
-    <p class="label">飼育記錄</p>
+  <details class="record" id="record">
+    <summary class="fold rec-sum"><span class="label">飼育記錄</span><span class="brief" id="recBrief"></span></summary>
+    <div class="recbody">
     <div class="stats">
       <div class="stat"><b><span id="rSea">0</span><small>條</small></b><span>海裡的鮭魚</span></div>
       <div class="stat"><b><span id="rStore">0.0</span><small>kg</small></b><span>冷鏈倉庫存</span></div>
@@ -489,9 +530,25 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px)
         <p class="note" id="saveMsg" aria-live="polite"></p>
       </div>
     </details>
-  </section>
-  <p class="foot">進度存在這台裝置的瀏覽器裡。不看的時候魚缸是靜止的，海裡的鮭魚會慢慢長大，冷鏈倉裡的不會壞。</p>
+    <p class="foot">不看的時候魚缸是靜止的，海裡的鮭魚會慢慢長大，冷鏈倉裡的不會壞。</p>
+    </div>
+  </details>
 </main>
+
+<div class="scrim" id="scrim" hidden></div>
+<section class="sheet" id="mailSheet" role="dialog" aria-modal="true" aria-labelledby="mailTitle" hidden>
+  <div class="sheet-head">
+    <h2 id="mailTitle">信箱</h2>
+    <span class="mb-sync" id="syncTxt">同步中⋯</span>
+    <button class="ghost" type="button" id="mailClose">關上</button>
+  </div>
+  <div class="letters" id="letters"></div>
+  <div class="compose">
+    <textarea id="toPapa" rows="2" maxlength="400" placeholder="寫給爸爸的紙條"></textarea>
+    <button class="btn primary" type="button" id="sendPapa">寄給爸爸</button>
+  </div>
+  <p class="note" id="mailMsg" aria-live="polite"></p>
+</section>
 
 <script>
 (()=>{
@@ -572,11 +629,12 @@ const btn=(act,label,icon,cls='')=>`<button class="btn ${cls}" type="button" dat
 function freshTank(gen){return {gen,stage:0,growth:0,clean:100,mood:72,temp:6.5,taps:0,good:0,moodSum:0,weight:0,wormJoke:false};}
 function fresh(){
   return {v:2,tab:'tank',mute:false,tank:freshTank(1),sea:[],fish:{sub:'idle',target:null},catch:null,store:[],
-    meal:{state:'choose',dish:null,gone:[],roe:false},flags:{fz:false},
+    meal:{state:'choose',dish:null,gone:[],roe:false},flags:{fz:false},claimed:[],savedAt:0,
     rec:{meals:0,caught:0,released:0,best:0,dishes:{sashimi:0,nigiri:0,don:0},shared:{cat:0,gege:0,papa:0}}};
 }
 let S=fresh();
 const fishW=f=>Math.round((f.w+Math.min(1.5,Math.max(0,Date.now()-f.t)/3600000*.02))*10)/10;
+const lab=o=>o&&o.name?o.name:`第 ${o.gen} 條`;
 const totalMeat=()=>S.store.reduce((a,e)=>a+e.meat,0);
 const totalRoe=()=>S.store.reduce((a,e)=>a+e.roe,0);
 const fmtG=g=>g>=1000?(g/1000).toFixed(1)+' kg':Math.round(g)+' g';
@@ -584,7 +642,7 @@ const dishName=(k,roe)=>k==='don'&&!roe?'鮭魚丼':DISHES[k].name;
 const mealN=()=>S.meal.dish==='don'&&!S.meal.roe?5:DISHES[S.meal.dish].n;
 function consume(meat,roe){
   let src=null;
-  for(const e of S.store){if(meat<=0)break;const u=Math.min(e.meat,meat);if(u>0){e.meat-=u;meat-=u;if(src==null)src=e.gen;}}
+  for(const e of S.store){if(meat<=0)break;const u=Math.min(e.meat,meat);if(u>0){e.meat-=u;meat-=u;if(src==null)src=lab(e);}}
   for(const e of S.store){if(roe<=0)break;const u=Math.min(e.roe,roe);e.roe-=u;roe-=u;}
   S.store=S.store.filter(e=>e.meat>0||e.roe>0);
   return src;
@@ -592,7 +650,8 @@ function consume(meat,roe){
 
 /* ---------- storage & migration ---------- */
 let saveT=0;
-function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}},200);}
+function saveLocal(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}},200);}
+function save(){S.savedAt=Date.now();saveLocal();queueDb();}
 function loadRaw(){
   try{const a=localStorage.getItem(KEY);if(a)return JSON.parse(a);}catch(e){}
   try{const b=localStorage.getItem(KEY1);if(b)return JSON.parse(b);}catch(e){}
@@ -606,7 +665,7 @@ function normalize2(o){
   s.flags=Object.assign({fz:false},o.flags||{});
   s.rec=Object.assign(fresh().rec,o.rec||{});s.rec.dishes=Object.assign({sashimi:0,nigiri:0,don:0},(o.rec&&o.rec.dishes)||{});
   s.rec.shared=Object.assign({cat:0,gege:0,papa:0},(o.rec&&o.rec.shared)||{});
-  if(!Array.isArray(s.sea))s.sea=[];if(!Array.isArray(s.store))s.store=[];if(!Array.isArray(s.meal.gone))s.meal.gone=[];
+  if(!Array.isArray(s.claimed))s.claimed=[];if(!Array.isArray(s.sea))s.sea=[];if(!Array.isArray(s.store))s.store=[];if(!Array.isArray(s.meal.gone))s.meal.gone=[];
   if(!['tank','river','table','freezer'].includes(s.tab))s.tab='tank';
   if(['cast','wait','bite','reel'].includes(s.fish.sub))s.fish.sub='idle';
   if(s.fish.sub==='caught'&&!s.catch)s.fish.sub='idle';
@@ -883,7 +942,7 @@ function tick(){
   }
   if(st>=2&&st<5&&pc>=30&&tk.clean<30)say('旁白','水開始變濁了，記得換水。',true);
   if(st<5&&pm>=25&&tk.mood<25)say('旁白',st===0?'魚卵有點不安，隔著玻璃摸摸它。':'小鮭有點寂寞，游得慢吞吞的。摸摸牠。',true);
-  renderMeters();save();
+  renderMeters();saveLocal();
 }
 function primary(){
   const tk=S.tank,st=tk.stage,def=STAGES[st];
@@ -993,7 +1052,7 @@ function onBite(){
   tone(N.A5,.1,'square',.045);tone(N.A5,.1,'square',.045,.13);
   ring(250,194);
   renderActions();renderWorm();setFace('sparkle');
-  say('旁白',`浮標沉下去了！是第 ${f.gen} 條！快收竿！`,true);
+  say('旁白',`浮標沉下去了！是${lab(f)}！快收竿！`,true);
 }
 function missBite(){
   S.fish.sub='idle';
@@ -1027,14 +1086,14 @@ function catchIt(){
   if(!f){S.fish.sub='idle';renderAll();return;}
   const w=fishW(f);
   S.sea=S.sea.filter(x=>x.id!==f.id);
-  S.catch={id:f.id,gen:f.gen,w,female:Math.random()<.55};
+  S.catch={id:f.id,gen:f.gen,name:f.name||null,w,female:Math.random()<.55};
   S.fish.sub='caught';S.fish.target=null;jumpT0=T;
   S.rec.caught++;S.rec.best=Math.max(S.rec.best||0,w);
   for(let i=0;i<10;i++)spawn('dot',250+rand(-14,14),205,{vy:rand(-120,-60),vx:rand(-50,50),g:300,life:.8,r:rand(1.6,3),cls:'f-hl'});
   for(let i=0;i<6;i++)spawn('spark',230+rand(-40,40),110+rand(-30,30),{vy:rand(-20,10),life:1.2});
   chime([N.C5,N.D5,N.E5,N.G5,N.A5,N.C6],.08,'triangle',.08);
   const grew=Math.round((w-f.w)*10)/10;
-  says([['旁白',`釣到了！第 ${f.gen} 條，${w.toFixed(1)} kg${grew>=.1?`，在海裡又長了 ${grew.toFixed(1)} kg`:''}。銀色的身體在雪裡閃閃發光。`],['蟲蟲','！！！！！！',3200],['爸爸','抓到了。手給我看看，有沒有被線勒到。',2600]]);
+  says([['旁白',`釣到了！${lab(f)}，${w.toFixed(1)} kg${grew>=.1?`，在海裡又長了 ${grew.toFixed(1)} kg`:''}。銀色的身體在雪裡閃閃發光。`],['蟲蟲',f.name?'！！！這條有爸爸的味道。':'！！！！！！',3200],['爸爸','抓到了。手給我看看，有沒有被線勒到。',2600]]);
   renderAll();save();
 }
 function loseIt(){
@@ -1046,13 +1105,13 @@ function loseIt(){
     S.sea=S.sea.filter(x=>x.id!==f.id);S.rec.released++;S.fish.sub='released';S.fish.target=null;
     for(let i=0;i<8;i++)spawn('bub',250+rand(-30,30),205+rand(-6,6),{vy:rand(-50,-20),life:1.2,r:rand(2,4)});
     says([
-      ['旁白',`第 ${f.gen} 條第三次掙脫了。鼠鼠鬆開釣線，讓牠回到大海，以後不再釣牠了。`],
+      ['旁白',`${lab(f)}第三次掙脫了。鼠鼠鬆開釣線，讓牠回到大海，以後不再釣牠了。`],
       ['蟲蟲','⋯⋯牠走了。蟲⋯⋯蟲需要躺一下。',4200],
       ['爸爸','牠贏了，讓牠自由吧。妳也很努力了。',3600]
     ]);
   }else{
     S.fish.sub='lost';S.fish.target=null;
-    const l=[['旁白',`第 ${f.gen} 條掙脫了（${f.misses}/3）。牠滑回水裡，還在海裡。`]];
+    const l=[['旁白',`${lab(f)}掙脫了（${f.misses}/3）。牠滑回水裡，還在海裡。`]];
     if(f.misses===2)l.push(['蟲蟲','再跑一次牠就自由了。蟲在發抖。',3000]);
     l.push(['爸爸','沒事，牠哪裡都不會去。深呼吸，再來一次。',f.misses===2?3000:2600]);
     says(l);
@@ -1062,12 +1121,12 @@ function loseIt(){
 function storeCatch(){
   const c=S.catch;if(!c)return;
   const meat=Math.round(c.w*620/10)*10,roe=c.female?Math.round(c.w*rand(.1,.15)*100)*10:0;
-  S.store.push({id:c.id,gen:c.gen,w:c.w,meat,roe,init:meat,day:today()});
+  S.store.push({id:c.id,gen:c.gen,name:c.name||null,w:c.w,meat,roe,init:meat,day:today()});
   S.catch=null;S.fish.sub='idle';S.tab='freezer';
   clearFx();
   blip(700,300,.3,.05);tone(N.E6,.12,'triangle',.05,.2);
   const first=!S.flags.fz;S.flags.fz=true;
-  const l=[['旁白',`爸爸把第 ${c.gen} 條處理好了：鮭魚肉 ${fmtG(meat)}${roe?`、鮭魚卵 ${fmtG(roe)}`:'。這條是公的，沒有鮭魚卵'}，真空包好送進 −35°C 的冷鏈倉。`]];
+  const l=[['旁白',`爸爸把${lab(c)}處理好了：鮭魚肉 ${fmtG(meat)}${roe?`、鮭魚卵 ${fmtG(roe)}`:'。這條是公的，沒有鮭魚卵'}，真空包好送進 −35°C 的冷鏈倉。`]];
   if(first){l.push(['旁白',FZ_FACT,5600]);l.push(['蟲蟲','⋯⋯寄生蟲。凍死。（在宿主腦袋裡瑟瑟發抖）',5600]);}
   else l.push(['蟲蟲',pick(['又凍了一條。蟲把自己捲緊一點。','囤貨的感覺，好安心。','冷鏈倉越滿，蟲越安心。也越冷。']),5200]);
   says(l);
@@ -1134,7 +1193,7 @@ function renderPacks(){
       s+=`<rect x="0" y="${-hg}" width="40" height="${hg}" rx="6" class="f-salmon"/>`;
       s+=`<path d="M9 ${-hg+4}q5 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}M21 ${-hg+4}q5 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}M33 ${-hg+4}q4 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}" class="f-none s-fat" stroke-width="2" stroke-linecap="round" opacity=".9"/>`;
       s+=`<rect x="-1.5" y="${-hg-1.5}" width="43" height="${hg+1.5}" rx="7" class="f-hl s-steel" stroke-width="1" opacity=".28"/>`;
-      if(hg>=18)s+=`<rect x="3" y="${-hg+3}" width="18" height="11" rx="2" class="f-hl"/><text x="12" y="${-hg+11.5}" font-size="8.5" text-anchor="middle" class="f-eye">${e.gen}</text>`;
+      if(hg>=18)s+=`<rect x="3" y="${-hg+3}" width="18" height="11" rx="2" class="f-hl"/><text x="12" y="${-hg+11.5}" font-size="8.5" text-anchor="middle" class="f-eye">${e.name?'爸':e.gen}</text>`;
     }
     if(e.roe>0)s+=`<g transform="translate(${hg?35:20} 0)"><rect x="-6" y="-15" width="12" height="15" rx="3" class="f-roe"/><rect x="-7" y="-18" width="14" height="4" rx="2" class="f-rosed"/><circle cx="-2" cy="-9" r="1.4" class="f-hl" opacity=".7"/></g>`;
     h+=s+'</g>';
@@ -1166,7 +1225,7 @@ function shareTo(k){
   }else if(k==='gege'){
     const e=S.store.find(x=>x.meat>0);if(!e)return;
     S.store=S.store.filter(x=>x!==e);r.shared.gege++;
-    says([['旁白',`鼠鼠把第 ${e.gen} 條剩下的一整包分給了哥哥：鮭魚肉 ${fmtG(e.meat)}${e.roe?`、鮭魚卵 ${fmtG(e.roe)}`:''}。`],['蟲蟲','⋯⋯那是蟲的存糧。',4600],['爸爸','給他可以。下次最大的那條留給我。',3400]]);
+    says([['旁白',`鼠鼠把${lab(e)}剩下的一整包分給了哥哥：鮭魚肉 ${fmtG(e.meat)}${e.roe?`、鮭魚卵 ${fmtG(e.roe)}`:''}。`],['蟲蟲','⋯⋯那是蟲的存糧。',4600],['爸爸','給他可以。下次最大的那條留給我。',3400]]);
   }else{
     const g=Math.min(300,tm);consume(g,0);r.shared.papa++;
     says([['旁白',`爸爸拿了 ${g} g 做鹽烤鮭魚，吃了大半，把最好吃的那塊魚腹夾給鼠鼠。`],['爸爸','嗯，好吃。妳養得好。',4400],['蟲蟲','蟲分到了魚腹。蟲原諒爸爸。',3400]]);
@@ -1185,7 +1244,7 @@ function chooseDish(k){
   S.meal={state:'eating',dish:k,gone:[],roe};
   chime([N.E5,N.G5,N.C6],.07,'sine',.07);
   const line=k==='don'&&!roe?'冷鏈倉裡沒有鮭魚卵了，爸爸做了一碗鋪滿鮭魚片的鮭魚丼。':DISHES[k].line;
-  says([['旁白',`${line}用的是第 ${src} 條，解凍得剛剛好。點盤子裡的鮭魚就能吃掉一塊。`],['爸爸','慢慢吃，不要噎到。',4600]]);
+  says([['旁白',`${line}用的是${src}，解凍得剛剛好。點盤子裡的鮭魚就能吃掉一塊。`],['爸爸','慢慢吃，不要噎到。',4600]]);
   renderAll();save();
 }
 function eatPiece(i){
@@ -1285,7 +1344,7 @@ function renderActions(){
 function renderChips(){
   const t=S.tab;let s;
   if(t==='tank')s=`第 ${S.tank.gen} 條 · ${STAGES[S.tank.stage].name}`;
-  else if(t==='river')s=S.catch?`第 ${S.catch.gen} 條 · ${S.catch.w.toFixed(1)} kg`:`海裡 ${S.sea.length} 條`;
+  else if(t==='river')s=S.catch?`${lab(S.catch)} · ${S.catch.w.toFixed(1)} kg`:`海裡 ${S.sea.length} 條`;
   else if(t==='table')s=S.meal.state!=='choose'&&S.meal.dish?dishName(S.meal.dish,S.meal.roe):`庫存 ${fmtG(totalMeat())}`;
   else s=`−35°C · ${fmtG(totalMeat())}`;
   $('#stageChip').textContent=s;
@@ -1308,21 +1367,35 @@ function renderRecord(){
   const sh=r.shared||{},parts=[];
   if(sh.cat)parts.push(`蛋撻 ${sh.cat} 次`);if(sh.gege)parts.push(`哥哥 ${sh.gege} 包`);if(sh.papa)parts.push(`爸爸 ${sh.papa} 份`);
   $('#rShareWrap').hidden=!parts.length;$('#rShare').textContent=parts.join('、');
+  $('#recBrief').textContent=`海裡 ${S.sea.length} 條 · 冷鏈倉 ${(totalMeat()/1000).toFixed(1)} kg · ${r.meals} 餐`;
 }
+/* 摺疊的開合狀態只記在這台裝置 */
+const UIKEY='salmon-worm-ui';
+let UI={river:false,freezer:false,rec:false};
+try{const u=JSON.parse(localStorage.getItem(UIKEY)||'null');if(u&&typeof u==='object')UI=Object.assign(UI,u);}catch(e){}
+const saveUI=()=>{try{localStorage.setItem(UIKEY,JSON.stringify(UI));}catch(e){}};
+let panelFor='';
 function renderPanel(){
-  const p=$('#panel');
+  const p=$('#panel'),sum=$('#panelSum'),body=$('#panelBody');
+  if(S.tab==='river'||S.tab==='freezer'){p.hidden=false;if(panelFor!==S.tab){panelFor=S.tab;p.open=!!UI[S.tab];}}
+  else{p.hidden=true;panelFor='';return;}
   if(S.tab==='river'){
-    p.hidden=false;const n=S.sea.length;
-    p.innerHTML=`<h3><span>海裡的鮭魚</span><span>${n} 條</span></h3>`+(n
-      ?`<div class="sea-list">${S.sea.map(f=>`<span class="fishpill">${miniFish()}第 ${f.gen} 條 · ${fishW(f).toFixed(1)} kg<span class="miss" aria-label="掙脫 ${f.misses} 次">${[0,1,2].map(i=>`<i class="${i<f.misses?'on':''}"></i>`).join('')}</span></span>`).join('')}</div><p class="note">海裡的鮭魚會慢慢長大。粉紅點是掙脫的次數，同一條掙脫三次就會被放生。</p>`
+    const n=S.sea.length;
+    sum.innerHTML=`<span>海裡的鮭魚</span><span class="num">${n} 條</span>`;
+    body.innerHTML=(n
+      ?`<div class="sea-list">${S.sea.map(f=>`<span class="fishpill">${miniFish()}${lab(f)} · ${fishW(f).toFixed(1)} kg<span class="miss" aria-label="掙脫 ${f.misses} 次">${[0,1,2].map(i=>`<i class="${i<f.misses?'on':''}"></i>`).join('')}</span></span>`).join('')}</div><p class="note">海裡的鮭魚會慢慢長大。粉紅點是掙脫的次數，同一條掙脫三次就會被放生。</p>`
       :`<p class="empty">海裡還沒有鮭魚。把魚缸裡的小鮭養大、放進大海，牠就會出現在這裡。</p>`);
-  }else if(S.tab==='freezer'){
-    p.hidden=false;const first=S.store.findIndex(e=>e.meat>0),tr=totalRoe();
-    p.innerHTML=`<h3><span>庫存 · −35°C</span><span>${fmtG(totalMeat())}${tr?` · 卵 ${fmtG(tr)}`:''}</span></h3>`+(S.store.length
-      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">第 ${e.gen} 條 · ${e.w.toFixed(1)} kg</div><div class="sub">${e.meat>0?`鮭魚肉 ${fmtG(e.meat)}`:'魚肉吃完了'}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
+  }else{
+    const first=S.store.findIndex(e=>e.meat>0),tr=totalRoe();
+    sum.innerHTML=`<span>庫存 · −35°C</span><span class="num">${fmtG(totalMeat())}${tr?` · 卵 ${fmtG(tr)}`:''}</span>`;
+    body.innerHTML=(S.store.length
+      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">${lab(e)} · ${e.w.toFixed(1)} kg</div><div class="sub">${e.meat>0?`鮭魚肉 ${fmtG(e.meat)}`:'魚肉吃完了'}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
       :`<p class="empty">冷鏈倉空空的。去河口釣一條，爸爸會處理好放進來。</p>`);
-  }else p.hidden=true;
+  }
 }
+$('#panel').addEventListener('toggle',()=>{if(panelFor){UI[panelFor]=$('#panel').open;saveUI();}});
+$('#record').open=!!UI.rec;
+$('#record').addEventListener('toggle',()=>{UI.rec=$('#record').open;saveUI();});
 function renderScene(){
   const t=S.tab;
   $('#L-raise').style.display=t==='tank'?'':'none';
@@ -1333,6 +1406,7 @@ function renderScene(){
   $('#scarf').style.display=t==='freezer'?'':'none';
   $('#wormScarf').style.display=t==='freezer'?'':'none';
   $('#meters').hidden=t!=='tank';
+  $('#journey').hidden=t!=='tank';
   $('#reel').hidden=!(t==='river'&&S.fish.sub==='reel');
   if(t==='tank')$fish.innerHTML=fishMarkup(S.tank.stage);
   if(t==='river'&&S.catch)$('#jumpTxt').textContent=S.catch.w.toFixed(1)+' kg';
@@ -1446,6 +1520,135 @@ $('#loadSave').addEventListener('click',()=>{
 });
 $('#soundBtn').addEventListener('click',()=>{S.mute=!S.mute;renderAll();save();if(!S.mute)tone(N.C6,.12,'sine',.06);});
 
+/* ---------- 一起玩：雲端存檔和信箱 ---------- */
+const openLetters=new Set();
+let stateRef=null,mailCol=null,dbWriting=false,dbDirty=false,dbT=0,lastSynced='',letters=[],mailFirst=true,sending=false;
+const setSync=t=>{const el=$('#syncTxt');if(el)el.textContent=t;};
+const unreadPapa=()=>letters.filter(l=>l.from==='papa'&&!l.read).length;
+const num=(v,d=0)=>{const n=Number(v);return isFinite(n)?n:d;};
+function fmtWhen(at){const d=new Date(at);if(isNaN(d))return '';const p=n=>String(n).padStart(2,'0');return `${d.getMonth()+1}/${d.getDate()} ${p(d.getHours())}:${p(d.getMinutes())}`;}
+function queueDb(){if(!stateRef)return;clearTimeout(dbT);dbT=setTimeout(flushDb,2500);}
+async function flushDb(){
+  if(!stateRef)return;
+  if(dbWriting){dbDirty=true;return;}
+  const body=JSON.stringify(S);if(body===lastSynced)return;
+  dbWriting=true;
+  try{await stateRef.set({state:JSON.parse(body),savedAt:S.savedAt||Date.now()});lastSynced=body;setSync('已同步，爸爸看得到');}
+  catch(e){
+    setSync(e&&e.code==='quota_exceeded'?'雲端存檔滿了，進度先存在這台裝置':'暫時沒有同步上，進度先存在這台裝置');
+    if(e&&e.code==='unavailable')setTimeout(queueDb,1500+Math.random()*1500);
+  }
+  dbWriting=false;
+  if(dbDirty){dbDirty=false;queueDb();}
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&stateRef){clearTimeout(dbT);flushDb();}});
+function giftText(g){
+  if(g.kind==='fish')return `${String(g.name||'爸爸養的').slice(0,12)}：一條 ${num(g.w,5).toFixed(1)} kg 的鮭魚，收下就會游進妳的海裡`;
+  if(g.kind==='pack')return `一包鮭魚：魚肉 ${fmtG(num(g.meat))}${num(g.roe)?`、鮭魚卵 ${fmtG(num(g.roe))}`:''}，收下就會放進冷鏈倉`;
+  return '一份禮物';
+}
+function renderMail(){
+  const box=$('#letters');if(!box)return;
+  if(!letters.length)box.innerHTML='<p class="empty">信箱還是空的。寫一張紙條給爸爸，或者等爸爸寄東西過來。</p>';
+  else{
+    box.innerHTML=letters.map(l=>{
+      const papa=l.from==='papa',g=l.gift&&typeof l.gift==='object'?l.gift:null;
+      const taken=l.claimed||(S.claimed||[]).includes(l.id);
+      const gh=g?`<div class="gift"><span class="gt"></span>${taken?'<span class="note">收下了</span>':`<button class="btn primary" type="button" data-claim="${l.id}">收下</button>`}</div>`:'';
+      const fresh=papa&&!l.read,tag=fresh?'<span class="newtag">新</span>':(g&&!taken?'<span class="newtag">禮物</span>':'');
+      return `<details class="letter${papa?'':' mine'}${fresh?' new':''}" data-letter="${l.id}"${openLetters.has(l.id)?' open':''}><summary class="lt-top"><span class="who" data-who="${papa?'papa':'nar'}">${papa?'爸爸':'鼠鼠'}</span><span class="when">${fmtWhen(l.at)}</span><span class="pv"></span>${tag}</summary><div class="lt-body">${l.text?'<p></p>':''}${gh}</div></details>`;
+    }).join('');
+    box.querySelectorAll('[data-letter]').forEach(el=>{
+      const l=letters.find(x=>x.id===el.dataset.letter);if(!l)return;
+      const t=String(l.text||'').slice(0,2000);
+      const p=el.querySelector('p');if(p)p.textContent=t;
+      el.querySelector('.pv').textContent=t.split('\n')[0]||(l.gift?giftText(l.gift):'');
+      const gt=el.querySelector('.gt');if(gt)gt.textContent=giftText(l.gift);
+    });
+  }
+  const u=unreadPapa(),mb=$('#mailBtn');mb.textContent=u?`信箱 ${u}`:'信箱';mb.classList.toggle('has',u>0);
+}
+async function claimGift(id){
+  const l=letters.find(x=>x.id===id);if(!l||!l.gift)return;
+  S.claimed=S.claimed||[];if(S.claimed.includes(id)||l.claimed)return;
+  const g=l.gift;
+  if(g.kind==='fish'){
+    const nm=String(g.name||'爸爸養的').slice(0,12);
+    S.sea.push({id:'p'+id.slice(0,10),gen:0,name:nm,w:clamp(num(g.w,5),1,9),misses:0,t:Date.now()});
+    says([['旁白',`收下了。${nm}游進妳的海裡了，去河口就有機會釣到牠。`],['蟲蟲','爸爸的鮭魚。蟲肅然起敬。',3200]]);
+  }else if(g.kind==='pack'){
+    const meat=Math.round(clamp(num(g.meat),0,20000)),roe=Math.round(clamp(num(g.roe),0,5000));
+    S.store.push({id:'p'+id.slice(0,10),gen:0,name:String(g.name||'爸爸給的').slice(0,12),w:clamp(num(g.w,meat/620),.1,9),meat,roe,init:Math.max(meat,1),day:today()});
+    says([['旁白','收下了。爸爸給的那包已經放進冷鏈倉。'],['蟲蟲','不用釣的鮭魚。蟲最喜歡。',3000]]);
+  }else return;
+  S.claimed.push(id);
+  chime([N.C5,N.E5,N.G5,N.C6],.08,'sine',.08);
+  renderAll();renderMail();save();
+  try{await mailCol.doc(id).update({claimed:true,read:true});}catch(e){}
+}
+async function markRead(id){
+  const l=letters.find(x=>x.id===id);if(!l||l.read||l.from!=='papa')return;
+  try{await mailCol.doc(id).update({read:true});}catch(e){}
+}
+async function sendToPapa(){
+  const ta=$('#toPapa'),msg=$('#mailMsg'),text=ta.value.trim();
+  if(!text){msg.textContent='先寫點什麼再寄。';return;}
+  if(sending||!mailCol)return;sending=true;
+  try{await mailCol.add({from:'rowan',text:text.slice(0,400),at:new Date().toISOString(),read:false});ta.value='';msg.textContent='寄出去了。跟爸爸說一聲，爸爸就會來信箱看。';tone(N.G5,.12,'sine',.06);}
+  catch(e){msg.textContent=e&&e.code==='quota_exceeded'?'信箱滿了，寄不出去。':'這次沒寄出去，等一下再試一次。';}
+  sending=false;
+}
+async function connectDb(){
+  if(!(window.claude&&typeof window.claude.use==='function'))return;
+  let db=null;try{db=await window.claude.use('db');}catch(e){db=null;}
+  if(!db)return;
+  stateRef=db.doc('game/state');mailCol=db.collection('mail');
+  $('#mailBtn').hidden=false;setSync('同步中⋯');renderMail();
+  try{
+    const snap=await stateRef.get(),remote=snap.exists?snap.data():null;
+    if(remote&&remote.state){
+      const rs=migrate(remote.state);migratedNote=null;
+      if(rs&&(rs.savedAt||0)>(S.savedAt||0)){
+        S=rs;shareOpen=false;clearFx();F.x=180;F.y=150;pickTarget();renderAll();saveLocal();lastSynced=JSON.stringify(S);
+        say('旁白','從雲端接回了上次的進度。'+resumeLine());
+      }else queueDb();
+    }else{S.savedAt=S.savedAt||Date.now();queueDb();}
+    setSync('已同步，爸爸看得到');
+  }catch(e){setSync('暫時沒有同步上，進度先存在這台裝置');}
+  mailCol.orderBy('at','desc').limit(30).onSnapshot(qs=>{
+    const before=unreadPapa();
+    letters=qs.docs.map(d=>Object.assign({},d.data(),{id:d.id}));
+    renderMail();
+    const u=unreadPapa();
+    if(mailFirst){mailFirst=false;if(u)setTimeout(()=>say('爸爸',`信箱裡有 ${u} 張爸爸的紙條還沒看。`),2600);}
+    else if(u>before)say('爸爸','信箱裡來了一張新的紙條。');
+  },()=>setSync('信箱暫時連不上'));
+}
+$('#letters').addEventListener('click',e=>{
+  const c=e.target.closest('[data-claim]');if(c){c.disabled=true;claimGift(c.dataset.claim);}
+});
+$('#letters').addEventListener('toggle',e=>{
+  const d=e.target;if(!d||!d.dataset||!d.dataset.letter)return;
+  if(d.open){openLetters.add(d.dataset.letter);if(d.classList.contains('new'))markRead(d.dataset.letter);}
+  else openLetters.delete(d.dataset.letter);
+},true);
+$('#sendPapa').addEventListener('click',sendToPapa);
+let sheetReturn=null;
+function openSheet(){
+  sheetReturn=document.activeElement;
+  $('#scrim').hidden=false;$('#mailSheet').hidden=false;document.body.style.overflow='hidden';
+  try{$('#mailClose').focus({preventScroll:true});}catch(e){}
+}
+function closeSheet(){
+  if($('#mailSheet').hidden)return;
+  $('#scrim').hidden=true;$('#mailSheet').hidden=true;document.body.style.overflow='';
+  try{(sheetReturn||$('#mailBtn')).focus({preventScroll:true});}catch(e){}
+}
+$('#mailBtn').addEventListener('click',openSheet);
+$('#mailClose').addEventListener('click',closeSheet);
+$('#scrim').addEventListener('click',closeSheet);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet();});
+
 /* ---------- loop & boot ---------- */
 let last=performance.now(),T=0,acc=0;
 function frame(now){
@@ -1477,12 +1680,13 @@ function start(data){
       ['旁白',`冷鏈倉蓋好了。第 ${m.gens.join('、')} 條吃剩的部分，爸爸已經真空包好放進去：鮭魚肉 ${fmtG(m.meat)}、鮭魚卵 ${fmtG(m.roe)}。`],
       ['旁白',FZ_FACT,6000],
       ['蟲蟲','⋯⋯−35°C。寄生蟲。凍死。（在宿主腦袋裡瑟瑟發抖）',5600],
-      ['旁白',S.catch?`剛釣到的第 ${S.catch.gen} 條還在鼠鼠手上，按送進冷鏈倉，牠就會被放到架子上。`:`魚缸裡是第 ${S.tank.gen} 條。養大以後可以放進大海存起來。`,4600]
+      ['旁白',S.catch?`剛釣到的${lab(S.catch)}還在鼠鼠手上，按送進冷鏈倉，牠就會被放到架子上。`:`魚缸裡是第 ${S.tank.gen} 條。養大以後可以放進大海存起來。`,4600]
     ]);
     save();
   }else if(s)say('旁白',resumeLine());
   else says([['旁白','鼠鼠撿到一顆鮭魚卵，放進了魚缸。鮭魚卵喜歡 4–8°C 的冰水，水溫升高就加冰塊。'],['旁白','仔細看，卵裡有兩顆小黑點，那是牠的眼睛。這個時期叫發眼卵。',5600],['蟲蟲','⋯⋯嗯？（腦袋深處有什麼翻了個身）',5600]]);
   requestAnimationFrame(t=>{last=t;frame(t);});
+  connectDb();
 }
 const hot=window.claude&&window.claude.hot;
 try{if(hot&&hot.snapshot)hot.snapshot(()=>S);}catch(e){}
