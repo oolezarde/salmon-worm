@@ -78,10 +78,10 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,6.8vw,30px)
 .sheet-head{display:flex;align-items:center;gap:10px}
 .sheet-head h2{margin:0;font-family:var(--f-display);font-weight:400;font-size:22px;letter-spacing:.04em}
 .sheet-head .mb-sync{margin-right:auto}
-.sheet .letters{overflow:auto;flex:1 1 auto;min-height:0;align-content:start;padding:2px}
+.sheet .letters{overflow-y:auto;overflow-x:hidden;flex:1 1 auto;min-height:0;align-content:start;padding:2px}
 .mb-sync{font-size:12px;color:var(--ink-soft)}
-.letters{display:grid;gap:8px}
-.letter{border-radius:14px;background:var(--blush)}
+.letters{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.letter{border-radius:14px;background:var(--blush);min-width:0}
 .letter.mine{background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line)}
 .letter.new{box-shadow:inset 0 0 0 2px var(--rose)}
 .lt-top{display:flex;gap:8px;align-items:center;padding:10px 12px;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums;cursor:pointer;list-style:none}
@@ -99,7 +99,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,6.8vw,30px)
 .gift .btn{min-height:38px;font-size:14px;padding:0 14px;flex:none}
 .gift .note{flex:none}
 .compose{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
-#toPapa{width:100%;box-sizing:border-box;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.5 var(--f-body);padding:8px 10px;resize:vertical;min-height:52px}
+#toPapa{width:100%;box-sizing:border-box;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.5 var(--f-body);padding:8px 10px;resize:none;min-height:52px;max-height:160px;overflow-y:auto}
 .compose .btn{min-height:52px;font-size:15px}
 
 /* the lace card */
@@ -220,7 +220,7 @@ details[open] > .fold::after{transform:rotate(-135deg);margin-bottom:-3px}
 .saves{border-top:2px dashed var(--line);padding-top:10px}
 .saves summary{cursor:pointer;font-size:12.5px;letter-spacing:.14em;color:var(--ink-soft);font-weight:700}
 .savebox{display:grid;gap:8px;margin-top:10px}
-#saveCode{width:100%;box-sizing:border-box;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.4 ui-monospace,Menlo,monospace;padding:8px 10px;resize:vertical;word-break:break-all}
+#saveCode{width:100%;box-sizing:border-box;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.4 ui-monospace,Menlo,monospace;padding:8px 10px;resize:none;word-break:break-all}
 .save-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .save-btns .btn{min-height:44px;font-size:14px}
 
@@ -1594,7 +1594,7 @@ async function sendToPapa(){
   const ta=$('#toPapa'),msg=$('#mailMsg'),text=ta.value.trim();
   if(!text){msg.textContent='先寫點什麼再寄。';return;}
   if(sending||!mailCol)return;sending=true;
-  try{await mailCol.add({from:'rowan',text:text.slice(0,400),at:new Date().toISOString(),read:false});ta.value='';msg.textContent='寄出去了。跟爸爸說一聲，爸爸就會來信箱看。';tone(N.G5,.12,'sine',.06);}
+  try{await mailCol.add({from:'rowan',text:text.slice(0,400),at:new Date().toISOString(),read:false});ta.value='';ta.style.height='';msg.textContent='寄出去了。跟爸爸說一聲，爸爸就會來信箱看。';tone(N.G5,.12,'sine',.06);}
   catch(e){msg.textContent=e&&e.code==='quota_exceeded'?'信箱滿了，寄不出去。':'這次沒寄出去，等一下再試一次。';}
   sending=false;
 }
@@ -1633,6 +1633,7 @@ $('#letters').addEventListener('toggle',e=>{
   else openLetters.delete(d.dataset.letter);
 },true);
 $('#sendPapa').addEventListener('click',sendToPapa);
+$('#toPapa').addEventListener('input',e=>{const t=e.target;t.style.height='auto';t.style.height=Math.min(160,t.scrollHeight+4)+'px';});
 let sheetReturn=null;
 function openSheet(){
   sheetReturn=document.activeElement;
