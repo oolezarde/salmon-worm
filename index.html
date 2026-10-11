@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>鮭魚蟲餵養計畫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@400;700&display=swap">
+<style>
+/* Layout: one handheld 飼育手帳 column — header, lace-edged card with four places (魚缸 / 河口 / 餐桌 / 冷鏈倉), the tank fish's growth ribbon, then the record slip */
+:root{
+  --paper:#FFF4F2; --dot:#F8DBE2; --card:#FFFDFB; --ink:#5A4250; --ink-soft:#937786; --line:#F0D2DA;
+  --rose:#F0A3B7; --rose-deep:#D46F8D; --on-rose:#4A2C3A; --blush:#FCE5EA; --gold:#F2C266; --drop:rgba(180,98,126,.32);
+  --water-top:#E2F2F7; --water-bot:#A8D3E3; --rim:#C3E0EB; --sky:#EAF0FA; --mint:#D3EBDB; --mint-deep:#A6D2B7;
+  --rock:#E7DDE3; --rock-line:#CDBFC8; --snow:#FFFFFF;
+  --salmon:#F59C80; --fat:#FFE6DA; --roe:#FF9A5C; --silver:#E3E9F1; --silver-back:#93A9C5; --fry:#EBDDC2; --parr:#A8988A;
+  --fur:#EDE7ED; --fur-line:#C3B6C2; --belly:#FCF9FB; --ear:#F8C6D2; --nose:#EF94AB; --worm:#F7A2B6; --worm-line:#DE7894;
+  --murk:#A39567; --cloth:#FCE4EA; --plate:#FFFFFF; --rice:#FFFDF7; --rice-line:#E8DDCB; --char:#B5703F; --lemon:#FBE38A; --bowl:#F0A3B7;
+  --peb1:#F5DACB; --peb2:#ECD3E4; --peb3:#D4E6F0; --peb4:#F6E8C8;
+  --fz:#E7F0F7; --fz-deep:#CFDDEA; --steel:#B3C1CF; --panel:#3F3442; --ice:#9EE6FF;
+  --eye:#3A2832; --hl:#FFFFFF; --shadow:#3A4F5C;
+  --f-display:"Huninn","Chiron GoRound TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-body:"Chiron GoRound TC","Huninn","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1E1721; --dot:#2B2030; --card:#291F2D; --ink:#F6E7ED; --ink-soft:#BDA3B1; --line:#47354C;
+    --rose:#E98DA7; --rose-deep:#F4AAC0; --on-rose:#2A1520; --blush:#3A2939; --gold:#F2CB78; --drop:rgba(0,0,0,.55);
+    --water-top:#2A4A59; --water-bot:#15303E; --rim:#3D6678; --sky:#25283D; --mint:#2C463B; --mint-deep:#3C6553;
+    --rock:#4A3E48; --rock-line:#6A5A67; --snow:#F4F1FB;
+    --salmon:#F49A7F; --fat:#FFDCCB; --roe:#FF9455; --silver:#CDD6E2; --silver-back:#7F96B2; --fry:#DCCBAA; --parr:#8E8070;
+    --fur:#DDD5DD; --fur-line:#9F929E; --belly:#F1ECF0; --ear:#EFAABD; --nose:#EC8CA6; --worm:#F59AB0; --worm-line:#E07B98;
+    --murk:#7C7150; --cloth:#3A2939; --plate:#F1ECEF; --rice:#F6F1E8; --rice-line:#D9CFBF; --char:#A2643A; --lemon:#E8CF6E; --bowl:#E98DA7;
+    --peb1:#5A4646; --peb2:#4F3F52; --peb3:#3A5060; --peb4:#5B5340; --shadow:#0B1A22;
+    --fz:#1C2A36; --fz-deep:#26394A; --steel:#55687B; --panel:#0F0B12; --ice:#8FDDF7;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1E1721; --dot:#2B2030; --card:#291F2D; --ink:#F6E7ED; --ink-soft:#BDA3B1; --line:#47354C;
+  --rose:#E98DA7; --rose-deep:#F4AAC0; --on-rose:#2A1520; --blush:#3A2939; --gold:#F2CB78; --drop:rgba(0,0,0,.55);
+  --water-top:#2A4A59; --water-bot:#15303E; --rim:#3D6678; --sky:#25283D; --mint:#2C463B; --mint-deep:#3C6553;
+  --rock:#4A3E48; --rock-line:#6A5A67; --snow:#F4F1FB;
+  --salmon:#F49A7F; --fat:#FFDCCB; --roe:#FF9455; --silver:#CDD6E2; --silver-back:#7F96B2; --fry:#DCCBAA; --parr:#8E8070;
+  --fur:#DDD5DD; --fur-line:#9F929E; --belly:#F1ECF0; --ear:#EFAABD; --nose:#EC8CA6; --worm:#F59AB0; --worm-line:#E07B98;
+  --murk:#7C7150; --cloth:#3A2939; --plate:#F1ECEF; --rice:#F6F1E8; --rice-line:#D9CFBF; --char:#A2643A; --lemon:#E8CF6E; --bowl:#E98DA7;
+  --peb1:#5A4646; --peb2:#4F3F52; --peb3:#3A5060; --peb4:#5B5340; --shadow:#0B1A22;
+  --fz:#1C2A36; --fz-deep:#26394A; --steel:#55687B; --panel:#0F0B12; --ice:#8FDDF7;
+  color-scheme:dark;
+}
+
+body{
+  background-color:var(--paper);
+  background-image:radial-gradient(var(--dot) 2px,transparent 2.6px),radial-gradient(var(--dot) 2px,transparent 2.6px);
+  background-size:26px 26px; background-position:0 0,13px 13px;
+  color:var(--ink); font-family:var(--f-body); font-size:15px;
+  padding-inline:16px; padding-block:18px 40px;
+}
+.app{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+
+/* header */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding-inline:4px}
+.top > div{min-width:0}
+.eyebrow{display:flex;align-items:center;gap:6px;margin:0;font-size:12.5px;letter-spacing:.16em;color:var(--rose-deep)}
+.eyebrow svg{width:24px;height:15px;flex:none}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,7.6vw,34px);line-height:1.12;margin:4px 0 0;letter-spacing:.03em;text-wrap:balance;color:var(--ink)}
+.tag{margin:5px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em}
+.ghost{appearance:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);font:inherit;font-size:13px;border-radius:999px;padding:7px 12px;cursor:pointer;flex:none}
+
+/* the lace card */
+.card{position:relative;background:var(--card);border-radius:26px;padding:12px 12px 16px;box-shadow:0 16px 30px -18px var(--drop);margin-bottom:8px;-webkit-user-select:none;user-select:none}
+.card::before{content:"";position:absolute;inset:6px;border:2px dashed var(--line);border-radius:21px;pointer-events:none}
+.card::after{content:"";position:absolute;left:20px;right:20px;bottom:-9px;height:9px;background:radial-gradient(circle at 50% 0,var(--card) 6.5px,transparent 7px) 0 0/14px 9px repeat-x}
+
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:4px;margin:2px 2px 10px;border-radius:999px;background:var(--blush);position:relative}
+.tab{appearance:none;border:0;background:transparent;color:var(--ink-soft);font:inherit;font-size:13.5px;font-weight:700;border-radius:999px;min-height:38px;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0 3px;white-space:nowrap;min-width:0;touch-action:manipulation}
+.tab[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:0 2px 8px -4px var(--drop)}
+.tab .bd{font-size:10.5px;font-weight:700;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--rose);color:var(--on-rose);display:inline-grid;place-items:center;font-variant-numeric:tabular-nums;line-height:1}
+.tab:focus-visible{outline:3px solid var(--rose-deep);outline-offset:1px}
+
+.chips{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 4px 10px}
+.chip{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--blush);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.chip.worm{background:var(--worm);color:var(--on-rose);flex:none;max-width:62%}
+.chip.worm::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--on-rose);opacity:.45;margin-right:6px;vertical-align:1px}
+.scene{border-radius:18px;overflow:hidden;line-height:0;background:var(--blush)}
+#scene{width:100%;height:auto;display:block;touch-action:manipulation}
+#scene text{font-family:var(--f-display)}
+.piece{cursor:pointer}
+
+.say{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;margin-top:10px;padding:10px 12px;border-radius:16px;background:var(--blush)}
+.who{font-size:12px;line-height:1;padding:5px 9px;border-radius:999px;margin-top:3px;white-space:nowrap}
+.who[data-who="nar"]{background:var(--card);color:var(--ink-soft);box-shadow:inset 0 0 0 1.5px var(--line)}
+.who[data-who="worm"]{background:var(--worm);color:var(--on-rose)}
+.who[data-who="papa"]{background:var(--ink);color:var(--card)}
+#say{margin:0;font-size:15px;line-height:1.62;min-height:3.24em;-webkit-user-select:text;user-select:text}
+#say.pop{animation:pop .28s ease-out}
+
+.meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 4px 0}
+.mlab{display:flex;justify-content:space-between;gap:4px;font-size:12.5px;color:var(--ink-soft);margin-bottom:5px}
+.mlab b{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:700}
+.meter.low .mlab b{color:var(--rose-deep)}
+.track{height:9px;border-radius:999px;background:var(--blush);overflow:hidden}
+.track i{display:block;height:100%;border-radius:999px;transition:width .3s}
+#mClean{background:var(--water-bot)} #mMood{background:var(--rose)} #mGrow{background:var(--salmon)}
+
+.reel{display:grid;gap:8px;margin-top:12px}
+.reel-track{position:relative;height:46px;border-radius:999px;background:linear-gradient(var(--water-top),var(--water-bot));box-shadow:inset 0 0 0 2px var(--rim);overflow:hidden;touch-action:none}
+.zone{position:absolute;top:5px;bottom:5px;border-radius:999px;background:var(--rose);opacity:.5;transition:opacity .15s}
+.zone.in{opacity:.9;box-shadow:inset 0 0 0 2px var(--rose-deep)}
+.rfish{position:absolute;top:50%;width:48px;height:22px;transform:translate(-50%,-50%)}
+.rfish svg{width:100%;height:100%;display:block;overflow:visible}
+.reel-prog{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;font-size:12.5px;color:var(--ink-soft);padding-inline:4px}
+.pbar{height:10px;border-radius:999px;background:var(--blush);overflow:hidden}
+.pbar i{display:block;height:100%;width:30%;background:var(--rose-deep);border-radius:999px}
+
+.actions{display:grid;gap:10px;margin-top:14px}
+.actions.three{grid-template-columns:1.35fr 1fr 1fr}
+.actions.two{grid-template-columns:1.2fr 1fr}
+.actions.one{grid-template-columns:1fr}
+.actions.dishes{grid-template-columns:repeat(3,minmax(0,1fr))}
+.btn{appearance:none;min-height:52px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;cursor:pointer;touch-action:manipulation;transition:transform .08s,background-color .15s;white-space:nowrap;min-width:0}
+.btn:active,.btn.down{transform:scale(.96)}
+.btn.primary{background:var(--rose);border-color:var(--rose-deep);color:var(--on-rose)}
+.btn.urgent{animation:pulse .45s ease-in-out infinite alternate}
+.ic{width:19px;height:19px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic circle{fill:currentColor;stroke:none}
+.hold{min-height:62px;font-size:17px;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.hold.down{background:var(--rose-deep);color:var(--card)}
+.dishbtn{appearance:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 11px;border-radius:18px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13.5px;font-weight:700;cursor:pointer;min-width:0;touch-action:manipulation}
+.dishbtn svg{width:64px;height:44px}
+.dishbtn small{font-size:11.5px;font-weight:400;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.dishbtn:active{transform:scale(.97)}
+.dishbtn:disabled{opacity:.42;cursor:not-allowed;transform:none}
+.btn:focus-visible,.ghost:focus-visible,.dishbtn:focus-visible{outline:3px solid var(--rose-deep);outline-offset:3px}
+
+/* lists under the scene */
+.panel{margin-top:12px;padding:12px;border-radius:16px;background:var(--blush);display:grid;gap:8px}
+.panel h3{margin:0;font-size:12.5px;letter-spacing:.12em;color:var(--ink-soft);font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.panel h3 span:last-child{letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.sea-list{display:flex;flex-wrap:wrap;gap:6px}
+.fishpill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px 5px 6px;border-radius:999px;background:var(--card);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums}
+.mini{width:30px;height:14px;flex:none;overflow:visible}
+.miss{display:inline-flex;gap:3px;margin-left:2px}
+.miss i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.miss i.on{background:var(--rose-deep)}
+.store-list{display:grid;gap:6px}
+.store-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;background:var(--card)}
+.store-row .nm{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.store-row .sub{font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.store-row .bar{height:6px;border-radius:999px;background:var(--blush);overflow:hidden;margin-top:5px}
+.store-row .bar i{display:block;height:100%;background:var(--salmon);border-radius:999px}
+.fifo{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--rose);color:var(--on-rose);white-space:nowrap}
+.note,.empty{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+.empty{font-size:13.5px}
+
+/* growth ribbon */
+.journey{display:grid;gap:10px;padding:2px 4px}
+.label{margin:0;font-size:12px;letter-spacing:.16em;color:var(--ink-soft)}
+.stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;position:relative}
+.stages::before{content:"";position:absolute;left:7%;right:7%;top:7px;height:2px;background:var(--line)}
+.stages li{display:grid;justify-items:center;gap:6px;font-size:11.5px;color:var(--ink-soft);position:relative}
+.stages li i{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);background:var(--card);position:relative}
+.stages li.done i{background:var(--salmon);border-color:var(--salmon)}
+.stages li.now i{background:var(--rose);border-color:var(--rose-deep);box-shadow:0 0 0 4px var(--blush)}
+.stages li.now{color:var(--ink);font-weight:700}
+
+/* record slip */
+.record{border:2px dashed var(--line);border-radius:18px;padding:12px 14px;display:grid;gap:10px;background:var(--card)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px}
+.stat{min-width:0}
+.stat b{display:block;font-family:var(--f-display);font-weight:400;font-size:21px;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat b small{font-size:12.5px;margin-left:3px;color:var(--ink-soft)}
+.stat span{font-size:12px;color:var(--ink-soft)}
+.fav{margin:0;font-size:12.5px;color:var(--ink-soft)}
+.fav b{color:var(--ink);font-weight:700}
+.foot{margin:0;font-size:12px;color:var(--ink-soft);text-align:center}
+.saves{border-top:2px dashed var(--line);padding-top:10px}
+.saves summary{cursor:pointer;font-size:12.5px;letter-spacing:.14em;color:var(--ink-soft);font-weight:700}
+.savebox{display:grid;gap:8px;margin-top:10px}
+#saveCode{width:100%;box-sizing:border-box;border-radius:12px;border:2px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.4 ui-monospace,Menlo,monospace;padding:8px 10px;resize:vertical;word-break:break-all}
+.save-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.save-btns .btn{min-height:44px;font-size:14px}
+
+/* svg paint utilities */
+.f-card{fill:var(--card)} .f-ink{fill:var(--ink)} .f-inks{fill:var(--ink-soft)} .f-line{fill:var(--line)}
+.f-rose{fill:var(--rose)} .f-rosed{fill:var(--rose-deep)} .f-blush{fill:var(--blush)} .f-gold{fill:var(--gold)}
+.f-rim{fill:var(--rim)} .f-sky{fill:var(--sky)} .f-mint{fill:var(--mint)} .f-mintd{fill:var(--mint-deep)} .f-wbot{fill:var(--water-bot)}
+.f-rock{fill:var(--rock)} .f-snow{fill:var(--snow)} .f-salmon{fill:var(--salmon)} .f-fat{fill:var(--fat)}
+.f-roe{fill:var(--roe)} .f-silver{fill:var(--silver)} .f-silb{fill:var(--silver-back)} .f-fry{fill:var(--fry)} .f-parr{fill:var(--parr)}
+.f-fur{fill:var(--fur)} .f-belly{fill:var(--belly)} .f-ear{fill:var(--ear)} .f-nose{fill:var(--nose)} .f-worm{fill:var(--worm)}
+.f-murk{fill:var(--murk)} .f-cloth{fill:var(--cloth)} .f-plate{fill:var(--plate)} .f-rice{fill:var(--rice)} .f-char{fill:var(--char)}
+.f-lemon{fill:var(--lemon)} .f-bowl{fill:var(--bowl)} .f-eye{fill:var(--eye)} .f-hl{fill:var(--hl)} .f-shadow{fill:var(--shadow)}
+.f-peb1{fill:var(--peb1)} .f-peb2{fill:var(--peb2)} .f-peb3{fill:var(--peb3)} .f-peb4{fill:var(--peb4)} .f-none{fill:none}
+.f-fz{fill:var(--fz)} .f-fzd{fill:var(--fz-deep)} .f-steel{fill:var(--steel)} .f-panel{fill:var(--panel)} .f-ice{fill:var(--ice)}
+.s-inks{stroke:var(--ink-soft)} .s-line{stroke:var(--line)} .s-rose{stroke:var(--rose)} .s-rosed{stroke:var(--rose-deep)} .s-rim{stroke:var(--rim)}
+.s-fur{stroke:var(--fur-line)} .s-worm{stroke:var(--worm)} .s-wormline{stroke:var(--worm-line)} .s-rock{stroke:var(--rock-line)} .s-eye{stroke:var(--eye)}
+.s-hl{stroke:var(--hl)} .s-fat{stroke:var(--fat)} .s-char{stroke:var(--char)} .s-ricel{stroke:var(--rice-line)} .s-ear{stroke:var(--ear)}
+.s-silb{stroke:var(--silver-back)} .s-parr{stroke:var(--parr)} .s-steel{stroke:var(--steel)}
+
+#weeds .weed{transform-box:fill-box;transform-origin:50% 100%;animation:sway 3.2s ease-in-out infinite alternate}
+#weeds .w2{animation-duration:2.6s;animation-delay:-1.3s}
+#worm{transform-box:fill-box;transform-origin:30% 100%;animation:wig var(--wig,1.6s) ease-in-out infinite alternate}
+#worm.still{animation:none}
+#worm.shiver{animation:shiver .09s linear infinite alternate}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+@keyframes wig{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+@keyframes shiver{from{transform:translateX(-.8px) rotate(-3deg)}to{transform:translateX(.8px) rotate(3deg)}}
+@keyframes pop{from{opacity:.2;transform:translateY(3px)}to{opacity:1;transform:none}}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.04)}}
+@media (prefers-reduced-motion: reduce){
+  #weeds .weed,#worm,#worm.shiver,.btn.urgent,#say.pop{animation:none}
+}
+</style>
+
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div>
+      <p class="eyebrow"><svg viewBox="0 0 44 28" aria-hidden="true"><path d="M22 14C12 2 2 6 4 14C6 22 14 20 22 14Z" class="f-rose"/><path d="M22 14C32 2 42 6 40 14C38 22 30 20 22 14Z" class="f-rose"/><circle cx="22" cy="14" r="4" class="f-rosed"/></svg>鼠鼠飼育所</p>
+      <h1>鮭魚蟲餵養計畫</h1>
+      <p class="tag">養很多條，存在海裡，凍在倉裡，慢慢吃。</p>
+    </div>
+    <button id="soundBtn" class="ghost" type="button" aria-pressed="true">聲音 開</button>
+  </header>
+
+  <section class="card" aria-label="遊戲畫面">
+    <div class="tabs" id="tabs" role="tablist" aria-label="地點">
+      <button class="tab" role="tab" type="button" data-tab="tank">魚缸</button>
+      <button class="tab" role="tab" type="button" data-tab="river">河口<span class="bd" id="bdSea" hidden></span></button>
+      <button class="tab" role="tab" type="button" data-tab="table">餐桌</button>
+      <button class="tab" role="tab" type="button" data-tab="freezer">冷鏈倉<span class="bd" id="bdFz" hidden></span></button>
+    </div>
+    <div class="chips"><span class="chip worm" id="wormChip">鮭魚蟲：剛睡醒</span><span class="chip" id="stageChip">第 1 條 · 魚卵</span></div>
+    <div class="scene">
+      <svg id="scene" viewBox="0 0 360 270" role="img" aria-label="鼠鼠和鮭魚的場景">
+        <defs>
+          <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--water-top)"/><stop offset="1" style="stop-color:var(--water-bot)"/></linearGradient>
+          <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--water-top)"/><stop offset="1" style="stop-color:var(--water-bot)"/></linearGradient>
+          <clipPath id="tankClip"><rect x="16" y="22" width="328" height="226" rx="24"/></clipPath>
+          <pattern id="stripes" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="7" height="18" class="f-card" opacity=".5"/></pattern>
+          <pattern id="clothDots" width="16" height="16" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.7" class="f-hl" opacity=".6"/><circle cx="12" cy="12" r="1.7" class="f-hl" opacity=".6"/></pattern>
+        </defs>
+
+        <!-- 魚缸 -->
+        <g id="L-raise">
+          <rect width="360" height="270" class="f-blush"/>
+          <rect width="360" height="270" fill="url(#stripes)"/>
+          <rect x="0" y="244" width="360" height="26" class="f-line"/>
+          <rect x="0" y="244" width="360" height="4" class="f-rose" opacity=".55"/>
+          <g clip-path="url(#tankClip)">
+            <rect x="16" y="22" width="328" height="226" fill="url(#waterGrad)"/>
+            <rect x="16" y="22" width="328" height="14" class="f-card" opacity=".55"/>
+            <path id="surface" class="f-none s-hl" stroke-width="2" opacity=".85"/>
+            <g id="weeds">
+              <path class="weed f-mintd" d="M48 246C38 222 60 204 48 180C38 160 56 146 50 130C62 148 52 164 62 182C72 202 54 224 60 246Z"/>
+              <path class="weed w2 f-mint" d="M72 246C66 228 80 214 72 196C66 182 78 172 74 160C84 174 76 186 82 198C88 214 78 230 82 246Z"/>
+            </g>
+            <g id="gravel"></g>
+            <g id="bubbles"></g>
+            <g id="fish"></g>
+            <g id="specks" opacity="0"></g>
+            <rect id="murk" x="16" y="36" width="328" height="212" class="f-murk" opacity="0"/>
+          </g>
+          <rect x="16" y="22" width="328" height="226" rx="24" class="f-none s-rim" stroke-width="5"/>
+          <path d="M34 62V108M34 122V134" class="f-none s-hl" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+          <g id="tempChip" transform="translate(252 44)">
+            <rect width="80" height="24" rx="12" class="f-card" opacity=".92"/>
+            <circle id="tempDot" cx="13" cy="12" r="4.5" class="f-wbot"/>
+            <text id="tempTxt" x="23" y="16.5" font-size="12.5" class="f-ink">水溫 6.5°C</text>
+          </g>
+        </g>
+
+        <!-- 河口 -->
+        <g id="L-river" style="display:none">
+          <rect width="360" height="270" class="f-sky"/>
+          <path d="M180 128L262 58L370 128Z" class="f-mint"/>
+          <path d="M262 58L246 71.6L254 69L260 74L267 68L280 69.7Z" class="f-snow"/>
+          <path d="M-10 128L60 62L104 96L150 50L220 118Z" class="f-mintd"/>
+          <path d="M60 62L44 77L52 74L58 79L64 73L71 70.5Z" class="f-snow"/>
+          <path d="M150 50L134 66L142 63L148 69L156 62L166 65.5Z" class="f-snow"/>
+          <path d="M0 118C80 108 160 124 240 114C300 108 340 116 360 112L360 140L0 140Z" class="f-mint"/>
+          <g class="f-mintd"><path d="M232 116l8-18 8 18z"/><path d="M247 114l6-14 6 14z"/><path d="M300 112l7-16 7 16z"/><path d="M18 118l7-16 7 16z"/></g>
+          <rect y="132" width="360" height="138" fill="url(#riverGrad)"/>
+          <g class="f-none s-hl" stroke-width="1.6" stroke-linecap="round" opacity=".55">
+            <path d="M150 152q10-3 20 0"/><path d="M290 160q12-3 24 0"/><path d="M196 238q12-3 24 0"/><path d="M302 224q10-3 20 0"/><path d="M128 254q12-3 24 0"/><path d="M168 196q10-3 20 0"/>
+          </g>
+          <g id="seaShadows"></g>
+          <ellipse id="shadowFish" rx="24" ry="7" class="f-shadow" opacity=".22" style="display:none"/>
+          <ellipse cx="322" cy="252" rx="22" ry="9" class="f-rock s-rock" stroke-width="1.5"/>
+          <ellipse cx="80" cy="220" rx="58" ry="24" class="f-rock s-rock" stroke-width="2"/>
+          <ellipse cx="62" cy="209" rx="18" ry="5" class="f-hl" opacity=".35"/>
+          <path d="M88 176L196 86" class="f-none s-rosed" stroke-width="3.2" stroke-linecap="round"/>
+          <circle cx="97" cy="168" r="4.5" class="f-card s-rosed" stroke-width="2"/>
+          <path id="line" class="f-none s-inks" stroke-width="1"/>
+          <g id="bobber">
+            <path d="M0-6V-12" class="f-none s-inks" stroke-width="1.2"/>
+            <circle r="6.5" class="f-hl s-inks" stroke-width="1"/>
+            <path d="M-6.5 0A6.5 6.5 0 0 1 6.5 0Z" class="f-rose"/>
+          </g>
+          <text id="bang" x="250" y="168" font-size="24" text-anchor="middle" class="f-rosed" style="display:none">！</text>
+          <g id="jumpFish" style="display:none"></g>
+          <g id="jumpTag" style="display:none">
+            <rect x="-32" y="-13" width="64" height="22" rx="11" class="f-card s-rose" stroke-width="2"/>
+            <text id="jumpTxt" y="3" font-size="13" text-anchor="middle" class="f-ink">0.0 kg</text>
+          </g>
+          <g id="snow"></g>
+        </g>
+
+        <!-- 冷鏈倉 -->
+        <g id="L-freezer" style="display:none">
+          <rect width="360" height="270" class="f-fz"/>
+          <g class="f-none s-steel" stroke-width="1.2" opacity=".45"><path d="M30 0V236M90 0V236M150 0V236M210 0V236M270 0V236M330 0V236"/></g>
+          <rect y="236" width="360" height="34" class="f-fzd"/>
+          <path d="M0 236H360" class="f-none s-steel" stroke-width="2"/>
+          <g id="frost"></g>
+          <g transform="translate(258 16)">
+            <rect width="88" height="32" rx="9" class="f-panel"/>
+            <circle cx="15" cy="16" r="3.5" class="f-ice"/>
+            <text x="54" y="22" text-anchor="middle" font-size="16" class="f-ice">−35°C</text>
+          </g>
+          <path d="M114 56V236M348 56V236" class="f-none s-steel" stroke-width="4" stroke-linecap="round"/>
+          <rect x="108" y="112" width="246" height="7" rx="3.5" class="f-steel"/>
+          <rect x="108" y="190" width="246" height="7" rx="3.5" class="f-steel"/>
+          <g id="packs"></g>
+          <text id="packsEmpty" x="231" y="160" text-anchor="middle" font-size="13" class="f-inks">空空的⋯⋯</text>
+          <g id="mist"></g>
+        </g>
+
+        <!-- 餐桌後面的牆 -->
+        <g id="L-tablebg" style="display:none">
+          <rect width="360" height="270" class="f-blush"/>
+          <rect width="360" height="270" fill="url(#stripes)"/>
+          <circle cx="180" cy="112" r="80" class="f-card" opacity=".6"/>
+          <rect x="24" y="26" width="76" height="86" rx="8" class="f-sky s-line" stroke-width="2"/>
+          <circle cx="62" cy="52" r="1.6" class="f-snow"/><circle cx="54" cy="74" r="1.3" class="f-snow"/><circle cx="68" cy="90" r="1.5" class="f-snow"/>
+          <path d="M20 22H62C58 50 64 80 56 114H20Z" class="f-rose"/>
+          <path d="M104 22H64C68 50 60 80 66 114H104Z" class="f-rose"/>
+          <path d="M18 21H106" class="f-none s-rosed" stroke-width="3" stroke-linecap="round"/>
+          <g transform="translate(264 34)">
+            <rect width="68" height="52" rx="6" class="f-card s-rose" stroke-width="3"/>
+            <g id="portrait" transform="translate(36 27) scale(.6)"></g>
+          </g>
+        </g>
+
+        <!-- 鼠鼠 -->
+        <g id="mouse" transform="translate(298 230) scale(.9)">
+          <g id="mBody">
+            <path d="M22 52C42 58 52 40 42 30C36 24 30 32 36 35" class="f-none s-ear" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="0" cy="44" rx="26" ry="22" class="f-fur s-fur" stroke-width="1.5"/>
+            <ellipse cx="0" cy="48" rx="15" ry="13" class="f-belly"/>
+            <ellipse cx="-12" cy="64" rx="8" ry="4" class="f-fur s-fur" stroke-width="1.2"/>
+            <ellipse cx="12" cy="64" rx="8" ry="4" class="f-fur s-fur" stroke-width="1.2"/>
+          </g>
+          <g id="wormWrap" transform="translate(2 -24)">
+            <g id="worm">
+              <path d="M0 0C-3-8 4-12 2-20C.5-26 5-29 8-27" class="f-none s-worm" stroke-width="7" stroke-linecap="round"/>
+              <path d="M-1.6-6L2.2-6.8M.6-13L4.4-13.4M1-19.5L4.8-19.2" class="f-none s-wormline" stroke-width="1" opacity=".6"/>
+              <g id="wormScarf" style="display:none"><path d="M-1.2-21.6Q4-18.4 9.2-22.2L9.8-18.6Q4-15-1.6-18.2Z" class="f-rosed"/><path d="M6-18.2L9.2-11L6.6-11.4Z" class="f-rosed"/><path d="M1.6-19.8L2-17.2M5.2-19.6L5.5-17" class="f-none s-hl" stroke-width=".8" opacity=".75"/></g>
+              <g transform="translate(8.5 -27.5)">
+                <circle r="5.4" class="f-worm"/>
+                <g id="wfAwake"><circle cx="-1.8" cy="-.6" r="1" class="f-eye"/><circle cx="1.9" cy="-.6" r="1" class="f-eye"/><path d="M-1 1.6Q0 2.6 1 1.6" class="f-none s-eye" stroke-width=".8" stroke-linecap="round"/></g>
+                <g id="wfSleep" style="display:none"><path d="M-2.8-.4H-.8M.8-.4H2.8" class="f-none s-eye" stroke-width=".9" stroke-linecap="round"/></g>
+              </g>
+            </g>
+            <text id="zzz" x="15" y="-34" font-size="9" class="f-inks" style="display:none">z z</text>
+          </g>
+          <circle cx="-25" cy="-22" r="17" class="f-fur s-fur" stroke-width="1.5"/>
+          <circle cx="-25" cy="-22" r="10.5" class="f-ear"/>
+          <circle cx="25" cy="-22" r="17" class="f-fur s-fur" stroke-width="1.5"/>
+          <circle cx="25" cy="-22" r="10.5" class="f-ear"/>
+          <ellipse cx="0" cy="0" rx="32" ry="27" class="f-fur s-fur" stroke-width="1.5"/>
+          <g transform="translate(33 -33) rotate(18)">
+            <path d="M0 0C-9-10-15-2-13 4C-11 9-5 6 0 0Z" class="f-rose"/>
+            <path d="M0 0C9-10 15-2 13 4C11 9 5 6 0 0Z" class="f-rose"/>
+            <path d="M-1 1L-5 12L-1 10ZM1 1L5 12L1 10Z" class="f-rosed"/>
+            <circle r="3.2" class="f-rosed"/>
+            <circle cx="-8" cy="-1" r="1.2" class="f-hl"/><circle cx="8" cy="-1" r="1.2" class="f-hl"/><circle cx="-10" cy="4" r=".9" class="f-hl"/><circle cx="10" cy="4" r=".9" class="f-hl"/>
+          </g>
+          <ellipse cx="-18" cy="8" rx="6.5" ry="3.6" class="f-rose" opacity=".55"/>
+          <ellipse cx="18" cy="8" rx="6.5" ry="3.6" class="f-rose" opacity=".55"/>
+          <ellipse cx="0" cy="4" rx="3" ry="2.2" class="f-nose"/>
+          <path d="M-12 6L-27 3M-12 9L-27 11M12 6L27 3M12 9L27 11" class="f-none s-fur" stroke-width="1" stroke-linecap="round"/>
+          <g class="face" data-face="idle">
+            <circle cx="-11" cy="-3" r="3.3" class="f-eye"/><circle cx="-10" cy="-4.2" r="1.1" class="f-hl"/>
+            <circle cx="11" cy="-3" r="3.3" class="f-eye"/><circle cx="12" cy="-4.2" r="1.1" class="f-hl"/>
+            <path d="M0 7.5L-3.5 11.5M0 7.5L3.5 11.5" class="f-none s-eye" stroke-width="1.4" stroke-linecap="round"/>
+          </g>
+          <g class="face" data-face="drool" style="display:none">
+            <circle cx="-11" cy="-3" r="3.3" class="f-eye"/><circle cx="-10" cy="-4.2" r="1.1" class="f-hl"/>
+            <circle cx="11" cy="-3" r="3.3" class="f-eye"/><circle cx="12" cy="-4.2" r="1.1" class="f-hl"/>
+            <path d="M-4 9H3.5V13" class="f-none s-eye" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.5 14C2 17 2.4 19.6 3.5 19.6C4.6 19.6 5 17 3.5 14Z" class="f-wbot"/>
+          </g>
+          <g class="face" data-face="sparkle" style="display:none">
+            <path d="M-11-9 -9.6-4.4 -5-3 -9.6-1.6 -11 3 -12.4-1.6 -17-3 -12.4-4.4Z" class="f-gold s-rosed" stroke-width=".8"/>
+            <path d="M11-9 12.4-4.4 17-3 12.4-1.6 11 3 9.6-1.6 5-3 9.6-4.4Z" class="f-gold s-rosed" stroke-width=".8"/>
+            <path d="M-4 9Q0 15.5 4 9Z" class="f-eye"/>
+          </g>
+          <g class="face" data-face="chomp" style="display:none">
+            <path d="M-14-2Q-11-6-8-2M8-2Q11-6 14-2" class="f-none s-eye" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="0" cy="11" rx="5" ry="4.2" class="f-eye"/>
+            <ellipse cx="0" cy="13" rx="3" ry="1.6" class="f-nose"/>
+          </g>
+          <g class="face" data-face="content" style="display:none">
+            <path d="M-15-3H-7M7-3H15" class="f-none s-eye" stroke-width="2" stroke-linecap="round"/>
+            <path d="M0 7.5L-3.5 11.5M0 7.5L3.5 11.5" class="f-none s-eye" stroke-width="1.4" stroke-linecap="round"/>
+            <ellipse cx="-18" cy="8" rx="6.5" ry="3.6" class="f-rose" opacity=".5"/><ellipse cx="18" cy="8" rx="6.5" ry="3.6" class="f-rose" opacity=".5"/>
+          </g>
+          <g class="face" data-face="worried" style="display:none">
+            <circle cx="-11" cy="-3" r="4.6" class="f-eye"/><circle cx="-9.6" cy="-4.6" r="1.6" class="f-hl"/>
+            <circle cx="11" cy="-3" r="4.6" class="f-eye"/><circle cx="12.4" cy="-4.6" r="1.6" class="f-hl"/>
+            <path d="M-3.5 8V13.5H3.5V8M-3.5 10.7H3.5" class="f-none s-eye" stroke-width="1.3" stroke-linejoin="round"/>
+          </g>
+          <g id="scarf" style="display:none">
+            <path d="M-21 20Q0 31 21 20L22 27Q0 39-22 27Z" class="f-rose"/>
+            <path d="M10 27L17 44L9 42L5 29Z" class="f-rosed"/>
+            <path d="M-12 26.5V31M-4 28V32.5M4 28V32.5M12 26.5V31" class="f-none s-hl" stroke-width="1.2" opacity=".6"/>
+          </g>
+          <ellipse cx="-15" cy="25" rx="7.5" ry="5.5" class="f-fur s-fur" stroke-width="1.3"/>
+          <ellipse cx="15" cy="25" rx="7.5" ry="5.5" class="f-fur s-fur" stroke-width="1.3"/>
+        </g>
+
+        <!-- 餐桌 -->
+        <g id="L-table" style="display:none">
+          <rect y="150" width="360" height="120" class="f-cloth"/>
+          <rect y="150" width="360" height="120" fill="url(#clothDots)"/>
+          <path d="M0 150H360" class="f-none s-line" stroke-width="2"/>
+          <g id="plate">
+            <ellipse cx="180" cy="206" rx="100" ry="36" class="f-plate s-rose" stroke-width="3"/>
+            <ellipse cx="180" cy="206" rx="84" ry="28" class="f-none s-line" stroke-width="1.5"/>
+          </g>
+          <g id="bowl" style="display:none">
+            <path d="M100 184Q100 256 180 256Q260 256 260 184Z" class="f-bowl"/>
+            <path d="M114 216Q180 234 246 216" class="f-none s-hl" stroke-width="2.4" stroke-dasharray=".5 8" stroke-linecap="round" opacity=".85"/>
+            <ellipse cx="180" cy="184" rx="80" ry="17" class="f-rice s-ricel" stroke-width="1.2"/>
+          </g>
+          <g id="dish"></g>
+          <ellipse cx="320" cy="238" rx="12" ry="4" class="f-rose"/>
+          <path d="M298 248L344 188M308 250L350 194" class="f-none s-rosed" stroke-width="3.2" stroke-linecap="round"/>
+        </g>
+
+        <g id="fx"></g>
+      </svg>
+    </div>
+
+    <div class="say" aria-live="polite"><span class="who" id="who" data-who="nar">旁白</span><p id="say">鼠鼠撿到一顆鮭魚卵。</p></div>
+
+    <div class="meters" id="meters">
+      <div class="meter" id="mtClean"><div class="mlab"><span>水質</span><b id="vClean">100</b></div><div class="track"><i id="mClean" style="width:100%"></i></div></div>
+      <div class="meter" id="mtMood"><div class="mlab"><span>心情</span><b id="vMood">72</b></div><div class="track"><i id="mMood" style="width:72%"></i></div></div>
+      <div class="meter" id="mtGrow"><div class="mlab"><span>成長</span><b id="vGrow">0%</b></div><div class="track"><i id="mGrow" style="width:0%"></i></div></div>
+    </div>
+
+    <div class="reel" id="reel" hidden>
+      <div class="reel-track" id="track"><div class="zone" id="zone"></div><div class="rfish" id="rfish"></div></div>
+      <div class="reel-prog"><span>收線進度</span><div class="pbar"><i id="prog"></i></div></div>
+    </div>
+
+    <div class="actions three" id="actions"></div>
+    <div class="panel" id="panel" hidden></div>
+  </section>
+
+  <section class="journey" aria-label="魚缸裡這條的成長">
+    <p class="label" id="journeyLbl">第 1 條的成長</p>
+    <ol class="stages" id="stages"></ol>
+  </section>
+
+  <section class="record" aria-label="飼育記錄">
+    <p class="label">飼育記錄</p>
+    <div class="stats">
+      <div class="stat"><b><span id="rSea">0</span><small>條</small></b><span>海裡的鮭魚</span></div>
+      <div class="stat"><b><span id="rStore">0.0</span><small>kg</small></b><span>冷鏈倉庫存</span></div>
+      <div class="stat"><b><span id="rMeals">0</span><small>餐</small></b><span>吃掉的鮭魚</span></div>
+      <div class="stat"><b><span id="rCaught">0</span><small>條</small></b><span>釣起來的</span></div>
+      <div class="stat"><b><span id="rReleased">0</span><small>條</small></b><span>放生的</span></div>
+      <div class="stat"><b><span id="rBest">—</span><small>kg</small></b><span>最重的一條</span></div>
+    </div>
+    <p class="fav">最常吃：<b id="rFav">還沒吃過</b><span id="rShareWrap" hidden> · 分出去：<b id="rShare"></b></span></p>
+    <details class="saves">
+      <summary>存檔碼</summary>
+      <div class="savebox">
+        <p class="note">複製存檔碼，就能把整個魚缸、大海和冷鏈倉帶到別的地方；貼上存檔碼，就能把它讀進來。</p>
+        <textarea id="saveCode" rows="3" spellcheck="false" autocomplete="off" placeholder="貼上存檔碼"></textarea>
+        <div class="save-btns"><button class="btn" type="button" id="copySave">複製存檔碼</button><button class="btn" type="button" id="loadSave">讀入存檔碼</button></div>
+        <p class="note" id="saveMsg" aria-live="polite"></p>
+      </div>
+    </details>
+  </section>
+  <p class="foot">進度存在這台裝置的瀏覽器裡。不看的時候魚缸是靜止的，海裡的鮭魚會慢慢長大，冷鏈倉裡的不會壞。</p>
+</main>
+
+<script>
+(()=>{
+'use strict';
+const NS='http://www.w3.org/2000/svg';
+const KEY='salmon-worm-plan-v2',KEY1='salmon-worm-plan-v1';
+const $=s=>document.querySelector(s);
+const rand=(a,b)=>a+Math.random()*(b-a);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const uid=()=>Math.random().toString(36).slice(2,7)+Date.now().toString(36).slice(-4);
+const today=()=>{const d=new Date();return `${d.getMonth()+1}/${d.getDate()}`;};
+const reduceMotion=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+const autumn=(()=>{const m=new Date().getMonth();return m>=8&&m<=10;})();
+
+const HEART='M0 3.2C-6.4-1.6-4.6-7.4 0-4.2C4.6-7.4 6.4-1.6 0 3.2Z';
+const SPARK='M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6Z';
+const BODY='M30 1C26-11 10-16-6-15C-18-14-26-8-31 0C-26 8-18 13-6 14C10 15 26 11 30 1Z';
+
+const STAGES=[
+  {name:'魚卵',act:'加冰塊',icon:'snow',scale:1,gain:16},
+  {name:'仔魚',act:'陪陪牠',icon:'star',scale:.5,gain:14},
+  {name:'稚魚',act:'餵飼料',icon:'food',scale:.62,gain:10,dirt:9},
+  {name:'幼鮭',act:'餵小蟲',icon:'food',scale:.8,gain:9,dirt:11},
+  {name:'銀化',act:'加海水',icon:'wave',scale:1,gain:13,dirt:4},
+  {name:'成鮭',act:'放進大海',icon:'wave',scale:1.28}
+];
+const STEPS=['魚卵','仔魚','稚魚','幼鮭','銀化','成鮭','入海'];
+const FACTS=[
+  '',
+  '孵出來了！仔魚肚子下面掛著卵黃囊，是自帶的便當。這時候不用餵，陪著牠就好。',
+  '便當吃完了，變成稚魚，要開始自己吃東西。餵太多水會髒，記得換水。',
+  '身上長出一條條直的斑紋，叫 parr mark，是躲在河床石頭間的保護色。幼鮭最愛吃水裡的小蟲。',
+  '斑紋褪掉，全身變成銀白色，這叫銀化。牠的身體正在準備從河裡去大海，一點一點加海水讓牠習慣。',
+  '長成大鮭魚了！鮭魚會在大海裡長大，再循著氣味回到出生的那條河。'+(autumn?'現在正好是秋天，鮭魚洄游的季節。':'')+'把牠放進大海吧，想吃的時候再去河口找牠。'
+];
+const AFTER=[
+  [],
+  [['蟲蟲','鮭⋯⋯？',5200]],
+  [['蟲蟲','鮭⋯⋯魚⋯⋯',5200]],
+  [['蟲蟲','鮭魚。鮭魚。鮭魚。',5600]],
+  [['蟲蟲','宿主，妳的口水。',5600]],
+  [['爸爸','養得很好，寶寶。',6000],['蟲蟲','放⋯⋯放進大海？蟲需要一個解釋。',3000]]
+];
+const OKL=[
+  ['冰塊咕嘟一聲沉下去，鮭魚卵輕輕晃了晃。','冰冰涼涼的，卵裡的小眼睛好像眨了一下。'],
+  ['仔魚挺著圓圓的卵黃囊，在石頭縫裡扭來扭去。','鼠鼠把臉貼在玻璃上，仔魚也游過來看。'],
+  ['稚魚衝上來，一口咬住飼料。','飼料慢慢沉下去，稚魚追著跑。'],
+  ['幼鮭追著小蟲轉了一圈。','啪一下，小蟲不見了。'],
+  ['身上的銀色又亮了一點。','牠慢慢習慣了鹹鹹的水。']
+];
+const DISHES={
+  sashimi:{name:'鮭魚刺身',n:5,line:'爸爸把鮭魚切成厚厚的五片，油花白白的，旁邊放了一角檸檬。'},
+  nigiri:{name:'炙燒鮭魚握',n:4,line:'爸爸把鮭魚表面炙燒到微微焦香，捏成四貫握壽司。'},
+  don:{name:'鮭魚親子丼',n:6,line:'白飯上鋪滿鮭魚片，中間堆了一小山鮭魚卵。親子丼，親和子都在碗裡。'}
+};
+const NEED={sashimi:150,nigiri:120,don:180},ROE_NEED=40,MIN_NEED=120;
+const FZ_FACT='冷凍到 −35°C 再放 15 個小時以上，魚肉裡的寄生蟲就活不了。野生鮭魚要生吃，都要先這樣凍過。';
+const BITES=['hehee','嗯嗯！','好吃','ㅇ¬ㅇ','再一口','hehee'];
+const CARE=['喝一口水再繼續玩。','腿放下來，不要翹著。','玩累了就休息，海裡的鮭魚不會跑掉的。'];
+const N={G3:196,C4:261.63,G4:392,A4:440,C5:523.25,D5:587.33,E5:659.25,G5:783.99,A5:880,C6:1046.5,E6:1318.51};
+const ICONS={
+  snow:'<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.6 4.6 12 6.2l2.4-1.6M9.6 19.4 12 17.8l2.4 1.6"/>',
+  drop:'<path d="M12 3.5c-3.2 4.4-6 7.4-6 10.6a6 6 0 0 0 12 0c0-3.2-2.8-6.2-6-10.6z"/>',
+  heart:'<path d="M12 19.5s-7-4.3-7-9.6A3.9 3.9 0 0 1 12 7.6a3.9 3.9 0 0 1 7 2.3c0 5.3-7 9.6-7 9.6z"/>',
+  food:'<circle cx="8" cy="15" r="2.4"/><circle cx="14" cy="9.5" r="2.4"/><circle cx="16.5" cy="16" r="2.4"/>',
+  wave:'<path d="M3 9.5c3-3 6 3 9 0s6 3 9 0M3 15.5c3-3 6 3 9 0s6 3 9 0"/>',
+  star:'<path d="M12 4l1.8 5.4L19 12l-5.2 2.6L12 20l-1.8-5.4L5 12l5.2-2.6z"/>',
+  rod:'<path d="M4 20 18 4v9"/><path d="M18 13a2 2 0 1 1-2 2"/>',
+  bowl:'<path d="M3.5 11.5h17a8.5 8.5 0 0 1-17 0z"/><path d="M9.5 8c0-1.6 1-2.4 1-4M13.5 8c0-1.6 1-2.4 1-4"/>',
+  box:'<path d="M4 8h16v11H4z"/><path d="M4 8l2-3h12l2 3M9 12h6"/>'
+};
+const ico=n=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]}</svg>`;
+const btn=(act,label,icon,cls='')=>`<button class="btn ${cls}" type="button" data-act="${act}">${ico(icon)}<span>${label}</span></button>`;
+
+/* ---------- state ---------- */
+function freshTank(gen){return {gen,stage:0,growth:0,clean:100,mood:72,temp:6.5,taps:0,good:0,moodSum:0,weight:0,wormJoke:false};}
+function fresh(){
+  return {v:2,tab:'tank',mute:false,tank:freshTank(1),sea:[],fish:{sub:'idle',target:null},catch:null,store:[],
+    meal:{state:'choose',dish:null,gone:[],roe:false},flags:{fz:false},
+    rec:{meals:0,caught:0,released:0,best:0,dishes:{sashimi:0,nigiri:0,don:0},shared:{cat:0,gege:0,papa:0}}};
+}
+let S=fresh();
+const fishW=f=>Math.round((f.w+Math.min(1.5,Math.max(0,Date.now()-f.t)/3600000*.02))*10)/10;
+const totalMeat=()=>S.store.reduce((a,e)=>a+e.meat,0);
+const totalRoe=()=>S.store.reduce((a,e)=>a+e.roe,0);
+const fmtG=g=>g>=1000?(g/1000).toFixed(1)+' kg':Math.round(g)+' g';
+const dishName=(k,roe)=>k==='don'&&!roe?'鮭魚丼':DISHES[k].name;
+const mealN=()=>S.meal.dish==='don'&&!S.meal.roe?5:DISHES[S.meal.dish].n;
+function consume(meat,roe){
+  let src=null;
+  for(const e of S.store){if(meat<=0)break;const u=Math.min(e.meat,meat);if(u>0){e.meat-=u;meat-=u;if(src==null)src=e.gen;}}
+  for(const e of S.store){if(roe<=0)break;const u=Math.min(e.roe,roe);e.roe-=u;roe-=u;}
+  S.store=S.store.filter(e=>e.meat>0||e.roe>0);
+  return src;
+}
+
+/* ---------- storage & migration ---------- */
+let saveT=0;
+function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}},200);}
+function loadRaw(){
+  try{const a=localStorage.getItem(KEY);if(a)return JSON.parse(a);}catch(e){}
+  try{const b=localStorage.getItem(KEY1);if(b)return JSON.parse(b);}catch(e){}
+  return null;
+}
+function normalize2(o){
+  const s=Object.assign(fresh(),o);
+  s.tank=Object.assign(freshTank((o.tank&&o.tank.gen)||1),o.tank||{});
+  s.fish=Object.assign({sub:'idle',target:null},o.fish||{});
+  s.meal=Object.assign({state:'choose',dish:null,gone:[],roe:false},o.meal||{});
+  s.flags=Object.assign({fz:false},o.flags||{});
+  s.rec=Object.assign(fresh().rec,o.rec||{});s.rec.dishes=Object.assign({sashimi:0,nigiri:0,don:0},(o.rec&&o.rec.dishes)||{});
+  s.rec.shared=Object.assign({cat:0,gege:0,papa:0},(o.rec&&o.rec.shared)||{});
+  if(!Array.isArray(s.sea))s.sea=[];if(!Array.isArray(s.store))s.store=[];if(!Array.isArray(s.meal.gone))s.meal.gone=[];
+  if(!['tank','river','table','freezer'].includes(s.tab))s.tab='tank';
+  if(['cast','wait','bite','reel'].includes(s.fish.sub))s.fish.sub='idle';
+  if(s.fish.sub==='caught'&&!s.catch)s.fish.sub='idle';
+  if(s.meal.state==='eating'&&(!s.meal.dish||s.meal.gone.length>=mealNFor(s.meal)))s.meal.state='done';
+  return s;
+}
+function mealNFor(m){return m.dish==='don'&&!m.roe?5:(DISHES[m.dish]?DISHES[m.dish].n:5);}
+let migratedNote=null;
+function migrate(o){
+  if(!o)return null;
+  if(o.v===2)return normalize2(o);
+  if(o.v!==1)return null;
+  const s=fresh();s.mute=!!o.mute;
+  const r=o.rec||{},gen=o.gen||1,w=o.weight||4;
+  s.rec.meals=r.eaten||0;s.rec.caught=r.eaten||0;s.rec.best=r.best||0;
+  s.rec.dishes=Object.assign(s.rec.dishes,r.dishes||{});
+  const past=Math.min(6,Math.max(0,(r.eaten||0)-(o.phase==='eat'&&o.sub==='done'?1:0)));
+  const note={gens:[],meat:0,roe:0};
+  for(let k=1;k<=past;k++){
+    const pw=r.best||4,pm=Math.round(pw*620/10)*10,pr=Math.round(pw*120/10)*10;
+    s.store.push({id:uid(),gen:k,w:pw,meat:pm-150,roe:pr,init:pm,day:today()});
+    note.gens.push(k);note.meat+=pm-150;note.roe+=pr;
+  }
+  if(past)migratedNote=note;
+  if(o.phase==='raise'){
+    s.tank=Object.assign(freshTank(gen),{stage:o.stage||0,growth:o.growth||0,clean:o.clean??100,mood:o.mood??72,temp:o.temp??6.5,
+      taps:o.taps||0,good:o.good||0,moodSum:o.moodSum||0,weight:o.weight||0,wormJoke:!!o.wormJoke});
+    return s;
+  }
+  s.tank=freshTank(gen+1);
+  if(o.phase==='fish'){
+    if(o.sub==='caught'){s.catch={id:uid(),gen,w,female:true};s.fish.sub='caught';s.rec.caught++;s.rec.best=Math.max(s.rec.best,w);}
+    else s.sea.push({id:uid(),gen,w,misses:0,t:Date.now()});
+    s.tab='river';return s;
+  }
+  const meat=Math.round(w*620/10)*10,roe=Math.round(w*120/10)*10;
+  const used=o.sub==='choose'?0:(NEED[o.dish]||150);
+  s.store.push({id:uid(),gen,w,meat:meat-used,roe,init:meat,day:today()});
+  if(o.sub!=='done')s.rec.caught=Math.max(s.rec.caught,(r.eaten||0)+1);
+  s.rec.best=Math.max(s.rec.best,w);
+  if(o.sub==='eating'&&o.dish){s.meal={state:'eating',dish:o.dish,gone:o.gone||[],roe:false};s.tab='table';}
+  else{s.tab='freezer';note.gens.push(gen);note.meat+=meat-used;note.roe+=roe;migratedNote=note;}
+  return s;
+}
+
+/* ---------- sound (A4 = 440, equal temperament) ---------- */
+let ac=null;
+function ctx(){if(S.mute)return null;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();return ac;}catch(e){return null;}}
+function tone(f,dur=.18,type='sine',vol=.1,when=0){const c=ctx();if(!c)return;try{const t=c.currentTime+when,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g).connect(c.destination);o.start(t);o.stop(t+dur+.05);}catch(e){}}
+function blip(f1,f2,dur=.12,vol=.07,when=0){const c=ctx();if(!c)return;try{const t=c.currentTime+when,o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(f1,t);o.frequency.exponentialRampToValueAtTime(f2,t+dur);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g).connect(c.destination);o.start(t);o.stop(t+dur+.05);}catch(e){}}
+function chime(seq,step=.09,type='triangle',vol=.09){seq.forEach((f,i)=>tone(f,.3,type,vol,i*step));}
+
+/* ---------- speech ---------- */
+let holdUntil=0,seqTimers=[],lastSayAt=0;
+function put(who,text){
+  const w=$('#who');w.textContent=who;w.dataset.who=who==='爸爸'?'papa':who==='蟲蟲'?'worm':'nar';
+  const p=$('#say');p.textContent=text;p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop');
+  lastSayAt=performance.now();
+}
+function say(who,text,minor){
+  const now=performance.now();
+  if(minor&&now<holdUntil)return;
+  seqTimers.forEach(clearTimeout);seqTimers=[];
+  if(!minor)holdUntil=0;
+  put(who,text);
+}
+function says(list){
+  seqTimers.forEach(clearTimeout);seqTimers=[];
+  let acc=0;
+  list.forEach(([who,text,wait])=>{acc+=(wait||0);if(acc===0)put(who,text);else seqTimers.push(setTimeout(()=>put(who,text),acc));});
+  holdUntil=performance.now()+acc+3600;
+}
+
+/* ---------- svg helpers ---------- */
+const svg=$('#scene'),FX=$('#fx'),$fish=$('#fish'),$mouse=$('#mouse');
+function mk(tag,attrs){const el=document.createElementNS(NS,tag);for(const k in attrs)el.setAttribute(k,attrs[k]);return el;}
+function mulberry(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+function fishMarkup(stage){
+  if(stage===0)return `<g>
+    <circle r="17" class="f-roe" opacity=".92"/>
+    <circle cx="1" cy="2" r="12" class="f-fat" opacity=".35"/>
+    <path d="M-7 5C-9-3 0-8 6-3" class="f-none s-char" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>
+    <circle cx="3" cy="-4" r="2.3" class="f-eye"/><circle cx="8.5" cy="-1" r="2.3" class="f-eye"/>
+    <ellipse cx="-6" cy="-8" rx="4.5" ry="2.8" class="f-hl" opacity=".75" transform="rotate(-25 -6 -8)"/></g>`;
+  const silver=stage>=4,body=silver?'f-silver s-silb':'f-fry s-parr',fin=silver?'f-silb':'f-parr';
+  let over='';
+  if(silver)over+=`<path d="M30 1C26-11 10-16-6-15C-18-14-26-8-31 0C-20-5 6-8 30 1Z" class="${fin}" opacity=".85"/>`;
+  if(stage===5)over+=`<path d="M-26 2C-10-1 12-1 28 2C12 5-10 6-26 2Z" class="f-salmon" opacity=".55"/><circle cx="-14" cy="-9" r="1" class="f-eye" opacity=".4"/><circle cx="-6" cy="-11" r="1" class="f-eye" opacity=".4"/><circle cx="2" cy="-11" r="1" class="f-eye" opacity=".4"/>`;
+  if(stage===3)over+=[-18,-8,2,12].map(x=>`<ellipse cx="${x}" cy="0" rx="3.2" ry="6.5" class="f-parr" opacity=".55"/>`).join('');
+  if(stage===2)over+=[-14,-4,6].map(x=>`<ellipse cx="${x}" cy="0" rx="2.4" ry="4.5" class="f-parr" opacity=".25"/>`).join('');
+  if(stage===1)over+=`<ellipse cx="2" cy="11" rx="11" ry="8" class="f-roe" opacity=".92"/><ellipse cx="-1" cy="8.5" rx="4" ry="2.4" class="f-hl" opacity=".5"/>`;
+  return `<g>
+    <path d="M-29 0L-45-13C-41-5-41 5-45 13Z" class="${fin}"/>
+    <path d="M-8-13C-4-24 6-24 9-13Z" class="${fin}"/>
+    <path d="M-22-9C-21-15-16-15-15-11Z" class="${fin}"/>
+    <path d="${BODY}" class="${body}" stroke-width="1"/>
+    ${over}
+    <path d="M6 5C2 12-5 13-7 9Z" class="${fin}" opacity=".9"/>
+    <circle cx="20" cy="-3" r="3.3" class="f-eye"/><circle cx="21.1" cy="-4.1" r="1.1" class="f-hl"/>
+    <ellipse cx="15" cy="4" rx="3.6" ry="2" class="f-rose" opacity=".6"/>
+    <path d="M27.5 4q-2 2.2-4.4 1" class="f-none s-eye" stroke-width="1.1" stroke-linecap="round"/></g>`;
+}
+const ADULT=fishMarkup(5);
+const miniFish=()=>`<svg class="mini" viewBox="-48 -18 82 36" aria-hidden="true">${ADULT}</svg>`;
+
+function dishMarkup(){
+  const m=S.meal,k=m.dish,gone=m.gone||[];
+  const P=(i,x,y,r,inner)=>gone.includes(i)?'':`<g class="piece" data-i="${i}" data-x="${x}" data-y="${y}" data-r="${r}" transform="translate(${x} ${y}) rotate(${r})"><rect x="-21" y="-24" width="42" height="48" style="fill:transparent"/>${inner}</g>`;
+  let h='';
+  if(k==='sashimi'){
+    const inner=`<rect x="-11" y="-18" width="22" height="36" rx="7" class="f-salmon"/><path d="M-6-13q6 3 0 7M-6-3q6 3 0 7M-6 7q6 3 0 7" class="f-none s-fat" stroke-width="2.2" stroke-linecap="round"/><path d="M5-13V9" class="f-none s-hl" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>`;
+    h+=`<g transform="translate(254 210)"><path d="M-13 0A13 13 0 0 1 13 0Z" class="f-lemon"/><path d="M0 0V-10M0 0L-7-7M0 0L7-7" class="f-none s-hl" stroke-width="1.3"/></g>`;
+    for(let i=0;i<5;i++)h+=P(i,132+i*24,202+Math.abs(i-2)*3,(i-2)*12,inner);
+  }else if(k==='nigiri'){
+    const inner=`<rect x="-16" y="-4" width="32" height="15" rx="7" class="f-rice s-ricel" stroke-width="1"/><path d="M-19-2C-12-12 12-12 19-2C12 2-12 2-19-2Z" class="f-salmon"/><path d="M-10-6l5-2M-1-8l6-1M8-6l5-1" class="f-none s-char" stroke-width="2.2" stroke-linecap="round" opacity=".55"/><path d="M-14-3.5C-6-1 6-1 14-3.5" class="f-none s-fat" stroke-width="1.6" opacity=".9"/>`;
+    for(let i=0;i<4;i++)h+=P(i,117+i*42,206,0,inner);
+  }else if(k==='don'){
+    const inner=`<rect x="-10" y="-7" width="20" height="14" rx="5" class="f-salmon"/><path d="M-6-3q4 3 0 6M1-3q4 3 0 6" class="f-none s-fat" stroke-width="1.8" stroke-linecap="round"/>`;
+    [[-50,2,-22],[-26,-5,-10],[0,-7,0],[26,-5,10],[50,2,22]].forEach(([dx,dy,r],i)=>{h+=P(i,180+dx,180+dy,r,inner);});
+    if(m.roe){
+      const roe=[[0,0],[-5,2],[5,2],[-2,-4],[3,-3],[0,5],[-7,-2],[7,-2]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.2" class="f-roe"/><circle cx="${x-1}" cy="${y-1}" r=".9" class="f-hl" opacity=".7"/>`).join('');
+      h+=P(5,180,188,0,roe);
+    }
+  }
+  return h;
+}
+function dishIcon(k,roe){
+  if(k==='sashimi')return `<svg viewBox="0 0 64 44" aria-hidden="true"><ellipse cx="32" cy="31" rx="28" ry="10" class="f-plate s-rose" stroke-width="2"/><rect x="16" y="12" width="10" height="18" rx="4" class="f-salmon" transform="rotate(-14 21 21)"/><rect x="27" y="11" width="10" height="18" rx="4" class="f-salmon"/><rect x="38" y="12" width="10" height="18" rx="4" class="f-salmon" transform="rotate(14 43 21)"/><path d="M29.5 15q3 2 0 4M29.5 21q3 2 0 4" class="f-none s-fat" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  if(k==='nigiri')return `<svg viewBox="0 0 64 44" aria-hidden="true"><rect x="16" y="23" width="32" height="13" rx="6.5" class="f-rice s-ricel"/><path d="M13 24C20 13 44 13 51 24C44 28 20 28 13 24Z" class="f-salmon"/><path d="M22 19l5-2M31 17l5-1M40 19l4-1" class="f-none s-char" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>`;
+  return `<svg viewBox="0 0 64 44" aria-hidden="true"><path d="M10 20Q10 42 32 42Q54 42 54 20Z" class="f-bowl"/><ellipse cx="32" cy="20" rx="22" ry="6" class="f-rice s-ricel"/><rect x="18" y="13" width="10" height="7" rx="3" class="f-salmon"/><rect x="36" y="13" width="10" height="7" rx="3" class="f-salmon"/>${roe?'<circle cx="32" cy="17" r="2.6" class="f-roe"/><circle cx="29" cy="20" r="2.4" class="f-roe"/><circle cx="35" cy="20" r="2.4" class="f-roe"/>':'<rect x="27" y="11" width="10" height="7" rx="3" class="f-salmon"/>'}</svg>`;
+}
+
+/* ---------- static scene pieces ---------- */
+const AMB=[],SPK=[],SNOW=[],MIST=[],SHAD=[];
+function buildStatic(){
+  const r=mulberry(7);let h='';
+  for(let i=0;i<46;i++){const x=16+r()*328,y=226+r()*20,rr=5+r()*6,c=1+Math.floor(r()*4);h+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${rr.toFixed(1)}" ry="${(rr*.72).toFixed(1)}" class="f-peb${c}"/>`;}
+  h+=`<g transform="translate(214 232)"><ellipse rx="13" ry="8" class="f-peb2"/><path d="M0-3C-6-10-11-3-8 1C-6 4-3 2 0-3ZM0-3C6-10 11-3 8 1C6 4 3 2 0-3Z" class="f-rose"/><circle cy="-3" r="2" class="f-rosed"/></g>`;
+  $('#gravel').innerHTML=h;
+  let fr='';for(let x=0;x<=360;x+=12)fr+=`<circle cx="${x}" cy="-1" r="7"/>`;
+  const r2=mulberry(11);for(let i=0;i<9;i++){const x=10+r2()*340,l=6+r2()*10;fr+=`<path d="M${x.toFixed(1)} 4l3 ${l.toFixed(1)}l3-${l.toFixed(1)}z"/>`;}
+  $('#frost').innerHTML=`<g class="f-hl" opacity=".85">${fr}</g>`;
+  const bg=$('#bubbles');
+  for(let i=0;i<7;i++){const el=mk('circle',{r:rand(1.6,3.4).toFixed(1),class:'f-none s-hl','stroke-width':1.2});bg.appendChild(el);AMB.push({el,x:rand(52,80),y:rand(60,240),v:rand(18,34),p:rand(0,6)});}
+  const sg=$('#specks');
+  for(let i=0;i<18;i++){const el=mk('circle',{r:rand(1,2.2).toFixed(1),class:'f-murk'});sg.appendChild(el);SPK.push({el,x:rand(30,330),y:rand(50,220),p:rand(0,6)});}
+  const ng=$('#snow');
+  for(let i=0;i<30;i++){const el=mk('circle',{r:rand(1.2,2.8).toFixed(1),class:'f-snow s-rim','stroke-width':.5,opacity:rand(.65,1).toFixed(2)});ng.appendChild(el);SNOW.push({el,x:rand(0,360),y:rand(0,270),v:rand(10,24),p:rand(0,6)});}
+  const mg=$('#mist');
+  for(let i=0;i<16;i++){const el=mk('circle',{r:rand(1,2.2).toFixed(1),class:'f-hl',opacity:rand(.4,.85).toFixed(2)});mg.appendChild(el);MIST.push({el,x:rand(0,360),y:rand(0,236),v:rand(4,10),p:rand(0,6)});}
+  const sh=$('#seaShadows');
+  for(let i=0;i<6;i++){const el=mk('ellipse',{rx:18,ry:5,class:'f-shadow',opacity:.13});sh.appendChild(el);SHAD.push({el,off:rand(0,6.28),sp:rand(.7,1.3),y:172+i*12});}
+  $('#jumpFish').innerHTML=ADULT;
+  $('#portrait').innerHTML=ADULT;
+  $('#rfish').innerHTML=`<svg viewBox="-48 -18 82 36" aria-hidden="true">${ADULT}</svg>`;
+}
+
+/* ---------- particles & tweens ---------- */
+const fx=[],tweens=[];
+function spawn(kind,x,y,o={}){
+  let el;
+  switch(kind){
+    case 'heart':el=mk('path',{d:HEART,class:'f-rose'});break;
+    case 'spark':el=mk('path',{d:SPARK,class:'f-gold'});break;
+    case 'dot':el=mk('circle',{r:o.r||2.2,class:o.cls||'f-salmon'});break;
+    case 'bub':el=mk('circle',{r:o.r||3,class:'f-none s-hl','stroke-width':1.4});break;
+    case 'ice':el=mk('rect',{x:-5,y:-5,width:10,height:10,rx:2.5,class:'f-hl s-rim','stroke-width':1.2});break;
+    case 'pellet':el=mk('circle',{r:2.3,class:'f-char'});break;
+    case 'ring':el=mk('ellipse',{rx:8,ry:2.6,class:'f-none s-hl','stroke-width':1.4});break;
+    default:el=mk('text',{'text-anchor':'middle','font-size':o.size||13,class:o.cls||'f-rosed'});el.textContent=o.text||'';
+  }
+  FX.appendChild(el);
+  const life=o.life||1.1;
+  fx.push({el,x,y,vx:o.vx??rand(-15,15),vy:o.vy??rand(-40,-20),g:o.g||0,life,max:life,rot:o.rot||0,vr:o.vr||0,s:o.s||1,grow:o.grow||0});
+}
+function clearFx(){fx.forEach(p=>p.el.remove());fx.length=0;}
+function updateFx(dt){
+  for(let i=fx.length-1;i>=0;i--){
+    const p=fx[i];p.life-=dt;p.vy+=p.g*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;p.s+=p.grow*dt;
+    p.el.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${p.rot.toFixed(0)}) scale(${p.s.toFixed(2)})`);
+    p.el.setAttribute('opacity',clamp(p.life/p.max*1.5,0,1).toFixed(2));
+    if(p.life<=0){p.el.remove();fx.splice(i,1);}
+  }
+}
+function tween(dur,fn,done){tweens.push({t0:performance.now(),dur:dur*1000,fn,done});}
+function runTweens(now){for(let i=tweens.length-1;i>=0;i--){const tw=tweens[i],t=clamp((now-tw.t0)/tw.dur,0,1);tw.fn(t);if(t>=1){tweens.splice(i,1);tw.done&&tw.done();}}}
+function ring(x,y){spawn('ring',x,y,{vx:0,vy:0,life:.8,grow:1.8});}
+
+/* ---------- mouse & worm ---------- */
+const MPOS={tank:[298,230,.9],river:[80,150,.85],table:[180,124,1],freezer:[62,224,.85]};
+let faceTimer=0;
+function baseFace(){
+  const t=S.tab;
+  if(t==='tank')return S.tank.stage<=2?'idle':S.tank.stage<=4?'drool':'sparkle';
+  if(t==='river'){const s=S.fish.sub;if(s==='lost'||s==='released')return 'worried';if(s==='bite'||s==='reel'||s==='caught')return 'sparkle';return S.sea.length?'drool':'idle';}
+  if(t==='table'){if(S.meal.state==='done')return 'content';return totalMeat()>=MIN_NEED||S.meal.state==='eating'?'drool':'worried';}
+  return S.store.length?'drool':'worried';
+}
+function showFace(n){document.querySelectorAll('#mouse .face').forEach(g=>{g.style.display=g.dataset.face===n?'':'none';});}
+function setFace(n,ms){clearTimeout(faceTimer);showFace(n);if(ms)faceTimer=setTimeout(()=>showFace(baseFace()),ms);}
+function wormInfo(){
+  const t=S.tab;
+  if(t==='tank'){const s=S.tank.stage;if(s<=1)return['剛睡醒',2.2];if(s<=3)return['蠢蠢欲動',1.1];if(s===4)return['口水流出來了',.7];return['失控中',.32];}
+  if(t==='river'){
+    const s=S.fish.sub;
+    if(s==='bite'||s==='reel')return['尖叫中',.2];
+    if(s==='caught')return['原地起飛',.18];
+    if(s==='lost')return['崩潰中',.5];
+    if(s==='released')return['目送中',2.6];
+    if(!S.sea.length)return['望海興嘆',2.4];
+    return[`數魚中（${S.sea.length} 條）`,.45];
+  }
+  if(t==='table'){
+    if(S.meal.state==='done')return['睡著了（暫時）',0];
+    if(S.meal.state==='eating')return['hehee',.25];
+    if(totalMeat()<MIN_NEED)return['餓',.9];
+    return['快點快點',.35];
+  }
+  if(!S.store.length)return['空倉焦慮',.6];
+  return['瑟瑟發抖',-1];
+}
+function renderWorm(){
+  const [txt,spd]=wormInfo(),w=$('#worm'),sleep=spd===0,shiver=spd<0;
+  $('#wormChip').textContent='鮭魚蟲：'+txt;
+  w.classList.toggle('still',sleep);
+  w.classList.toggle('shiver',shiver);
+  if(spd>0)w.style.setProperty('--wig',spd+'s');
+  $('#wfAwake').style.display=sleep?'none':'';
+  $('#wfSleep').style.display=sleep?'':'none';
+  $('#zzz').style.display=sleep?'':'none';
+}
+function updateMouse(){const [x,y,s]=MPOS[S.tab];const b=Math.sin(T*2.4)*.7;$mouse.setAttribute('transform',`translate(${x} ${(y+b).toFixed(2)}) scale(${s})`);}
+
+/* ---------- 魚缸 ---------- */
+const F={x:180,y:150,tx:180,ty:150,dir:1,happy:0,cx:180,cy:150};
+let murkV=0,tempWarned=false,activeSec=0,careIdx=0;
+function pickTarget(){
+  const tk=S.tank,s=STAGES[tk.stage].scale;
+  if(tk.stage===1){F.tx=rand(70,240);F.ty=rand(198,210);return;}
+  F.tx=rand(40+34*s,316-34*s);F.ty=rand(66+10*s,196-14*s);
+}
+function updateRaise(dt){
+  const tk=S.tank,st=tk.stage,sc=STAGES[st].scale;let x,y,rot=0,sx=1;
+  if(st===0){x=180;y=209;rot=Math.sin(T*2.2)*6+(F.happy>0?Math.sin(T*30)*8:0);}
+  else{
+    const dx=F.tx-F.x,dy=F.ty-F.y,d=Math.hypot(dx,dy);
+    const sp=(24+st*7)*(F.happy>0?2.4:1)*(tk.mood<25?.6:1);
+    if(d<4)pickTarget();else{F.x+=dx/d*sp*dt;F.y+=dy/d*sp*dt;}
+    if(Math.abs(dx)>2)F.dir=dx>0?1:-1;
+    x=F.x;y=F.y+Math.sin(T*3)*1.6;rot=d>0?clamp(dy/d*12,-14,14)*F.dir:0;sx=F.dir;
+  }
+  F.happy=Math.max(0,F.happy-dt);F.cx=x;F.cy=y;
+  $fish.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)}) scale(${(sx*sc).toFixed(3)} ${sc})`);
+  if(!reduceMotion){let d='M16 36';for(let px=16;px<=344;px+=8)d+=` L${px} ${(36+Math.sin(px*.06+T*2)*1.6).toFixed(1)}`;$('#surface').setAttribute('d',d);}
+  for(const b of AMB){b.y-=b.v*dt;if(b.y<42){b.y=rand(225,240);b.x=Math.random()<.6?rand(50,80):rand(100,250);}b.el.setAttribute('cx',(b.x+Math.sin(T*2+b.p)*2).toFixed(1));b.el.setAttribute('cy',b.y.toFixed(1));}
+  murkV+=(clamp((60-tk.clean)/60,0,1)*.38-murkV)*Math.min(1,dt*3);
+  $('#murk').setAttribute('opacity',murkV.toFixed(3));
+  const so=clamp((75-tk.clean)/75,0,1)*.9;$('#specks').setAttribute('opacity',so.toFixed(2));
+  if(so>0)for(const p of SPK){p.el.setAttribute('cx',(p.x+Math.sin(T*.5+p.p)*4).toFixed(1));p.el.setAttribute('cy',(p.y+Math.cos(T*.4+p.p)*3).toFixed(1));}
+}
+function tick(){
+  activeSec++;
+  if(activeSec%120===0&&performance.now()-lastSayAt>6000)say('爸爸',CARE[careIdx++%CARE.length]);
+  if(S.tab==='river'&&activeSec%15===0)renderPanel();
+  if(S.tab!=='tank')return;
+  const tk=S.tank,st=tk.stage,pc=tk.clean,pm=tk.mood;
+  tk.clean=clamp(tk.clean-(st>=2?.7:.3),0,100);
+  tk.mood=clamp(tk.mood-.8,0,100);
+  if(st===0){
+    tk.temp=Math.min(14,tk.temp+.45);
+    if(tk.temp>9.5&&!tempWarned){tempWarned=true;say('旁白',`水溫升到 ${tk.temp.toFixed(1)}°C 了，鮭魚卵熱熱的。加冰塊。`,true);}
+    if(tk.temp<8)tempWarned=false;
+  }
+  if(st>=2&&st<5&&pc>=30&&tk.clean<30)say('旁白','水開始變濁了，記得換水。',true);
+  if(st<5&&pm>=25&&tk.mood<25)say('旁白',st===0?'魚卵有點不安，隔著玻璃摸摸它。':'小鮭有點寂寞，游得慢吞吞的。摸摸牠。',true);
+  renderMeters();save();
+}
+function primary(){
+  const tk=S.tank,st=tk.stage,def=STAGES[st];
+  if(st===5){releaseToSea();return;}
+  if(st>=2&&tk.clean<30){say('旁白','水太濁了，小鮭看不清楚飼料。先換水。');tone(N.G4,.16,'sine',.06);setFace('worried',900);return;}
+  let ok=true;
+  if(st===0){
+    tk.temp=Math.round((tk.temp-2.4)*100)/100;
+    for(let i=0;i<2;i++)spawn('ice',rand(150,210),14,{vy:40,vx:rand(-10,10),g:260,life:.5,vr:rand(-220,220)});
+    setTimeout(()=>{for(let i=0;i<4;i++)spawn('bub',rand(160,200),42,{vy:rand(10,30),vx:rand(-10,10),life:.6,r:rand(1.5,3)});},380);
+    tone(N.E6,.12,'triangle',.06);tone(N.C6,.14,'triangle',.05,.06);
+    if(tk.temp<2){tk.temp=Math.max(tk.temp,.5);ok=false;say('旁白',`太冰了！水溫 ${tk.temp.toFixed(1)}°C，等它回溫一點再加。`);setFace('worried',900);}
+    else if(tk.temp>9){ok=false;say('旁白',`還是有點熱，${tk.temp.toFixed(1)}°C。再加一塊。`,true);}
+  }else if(st===1){
+    tk.mood=clamp(tk.mood+6,0,100);
+    for(let i=0;i<3;i++)spawn('spark',F.cx+rand(-16,16),F.cy+rand(-14,6),{vy:rand(-26,-12),life:.8,s:.8});
+    chime([N.E5,N.G5],.07,'sine',.07);
+  }else if(st===4){
+    for(let i=0;i<5;i++)spawn('spark',rand(70,290),40,{vy:rand(40,70),vx:0,life:.9,s:.55});
+    blip(500,700,.18,.05);
+  }else{
+    for(let i=0;i<3;i++)spawn('pellet',clamp(F.cx+rand(-24,24),40,300),40,{vy:rand(45,60),vx:0,life:1.1});
+    F.tx=clamp(F.cx+rand(-20,20),60,290);F.ty=72;
+    tone(N.E5,.12,'sine',.08);
+  }
+  tk.taps++;
+  if(ok){
+    const mf=tk.mood>=25?1:.5,g=def.gain*mf;
+    tk.good+=mf;tk.moodSum+=tk.mood;tk.growth+=g;
+    if(def.dirt)tk.clean=clamp(tk.clean-def.dirt,0,100);
+    spawn('text',F.cx,F.cy-22,{text:'+'+Math.round(g),vy:-30,vx:0,life:.9,size:13});
+    if(st===3&&!tk.wormJoke){tk.wormJoke=true;says([['蟲蟲','⋯⋯等一下，那個小蟲，不是我吧。'],['旁白','不是，是水裡的小蟲。鮭魚蟲鬆了一口氣。',2800]]);}
+    else if(mf<1)say('旁白','小鮭有點寂寞，長得慢了。摸摸牠。',true);
+    else if(Math.random()<.4)say('旁白',pick(OKL[st]),true);
+    if(tk.growth>=100)stageUp();
+  }
+  renderMeters();save();
+}
+function stageUp(){
+  const tk=S.tank;tk.stage++;tk.growth=0;
+  if(tk.stage===1){F.x=180;F.y=205;}
+  pickTarget();
+  chime([N.C5,N.E5,N.G5,N.C6]);
+  for(let i=0;i<7;i++)spawn('spark',F.cx+rand(-30,30),F.cy+rand(-24,12),{vy:rand(-50,-20),life:1.1});
+  if(tk.stage===5)tk.weight=computeWeight();
+  says([['旁白',FACTS[tk.stage]],...AFTER[tk.stage]]);
+  renderAll();
+}
+function computeWeight(){
+  const tk=S.tank,acc=tk.taps?tk.good/tk.taps:.7,mood=tk.taps?tk.moodSum/tk.taps/100:.6,q=acc*.6+mood*.4;
+  return Math.round((2.6+q*3.2+rand(-.25,.25))*10)/10;
+}
+function pet(){
+  if(S.tab!=='tank')return;
+  const tk=S.tank;
+  if(tk.mood>=98)say('旁白',tk.stage===0?'魚卵已經很安心了，靜靜地待在石頭上。':'小鮭已經很開心了，在水裡轉圈圈。',true);
+  else if(Math.random()<.45)say('旁白',tk.stage===0?'鼠鼠隔著玻璃摸摸魚卵，它輕輕晃了一下。':pick(['小鮭蹭了蹭鼠鼠的手指。','小鮭開心地翻了個身。']),true);
+  tk.mood=clamp(tk.mood+22,0,100);F.happy=1.1;
+  for(let i=0;i<3;i++)spawn('heart',F.cx+rand(-14,14),F.cy-10,{vy:rand(-40,-25),vx:rand(-12,12),life:1});
+  chime([N.G5,N.C6],.07,'sine',.07);
+  renderMeters();save();
+}
+function cleanWater(){
+  if(S.tab!=='tank')return;
+  const tk=S.tank,was=tk.clean;tk.clean=100;
+  for(let i=0;i<18;i++)spawn('bub',rand(30,260),rand(150,240),{vy:rand(-110,-60),vx:rand(-8,8),life:rand(.9,1.5),r:rand(2,4.5)});
+  blip(320,880,.12,.06);blip(400,1000,.1,.05,.08);blip(360,950,.1,.05,.16);
+  say('旁白',was>90?'水本來就很乾淨了，不過換一換也沒關係。':'換上新的冷水，咕嚕咕嚕。小鮭看得清楚了。',true);
+  renderMeters();save();
+}
+function releaseToSea(){
+  const tk=S.tank;
+  S.sea.push({id:uid(),gen:tk.gen,w:tk.weight||computeWeight(),misses:0,t:Date.now()});
+  for(let i=0;i<10;i++)spawn('spark',F.cx+rand(-40,40),F.cy+rand(-30,20),{vy:rand(-60,-20),life:1.2});
+  for(let i=0;i<12;i++)spawn('bub',F.cx+rand(-30,30),F.cy+rand(-10,20),{vy:rand(-120,-70),life:1,r:rand(2,4)});
+  chime([N.G4,N.C5,N.E5,N.G5,N.C6],.08,'sine',.08);
+  const n=S.sea.length,gen=tk.gen;
+  S.tank=freshTank(gen+1);F.x=180;F.y=150;pickTarget();tempWarned=false;
+  says([
+    ['旁白',`第 ${gen} 條游進大海了。牠會在海裡慢慢長大，想吃的時候去河口找牠。現在海裡有 ${n} 條。`],
+    ['蟲蟲',n===1?'哦，原來是存在海裡。鮭魚存款。蟲懂了。':pick(['存款增加了。蟲很滿意。',`${n} 條。蟲在心裡數了一遍。又數了一遍。`,'海裡的都是蟲的。（不是）']),5600],
+    ['旁白',`魚缸裡放進了一顆新的鮭魚卵，第 ${gen+1} 條。水溫升高就加冰塊。`,4400]
+  ]);
+  renderAll();save();
+}
+
+/* ---------- 河口 ---------- */
+let castT0=0,biteAt=0,nibbleAt=-1,nibbleT=-9,biteEnd=0,jumpT0=-9;
+const R={z:.35,zv:0,f:.5,ft:.5,timer:0,p:.3,w:.3,diff:1,hold:false};
+const targetFish=()=>S.sea.find(f=>f.id===S.fish.target);
+function cast(){
+  if(!['idle','lost','released'].includes(S.fish.sub))return;
+  if(!S.sea.length){say('旁白','海裡還沒有鮭魚。先回魚缸把小鮭養大、放進大海吧。');return;}
+  S.fish.sub='cast';S.fish.target=null;castT0=T;
+  blip(900,420,.25,.05);
+  say('旁白','咻，浮標落在水面上。浮標沉下去的時候就收竿。',true);
+  renderActions();renderWorm();showFace(baseFace());
+}
+function scheduleBite(){biteAt=T+rand(1.8,4.2);nibbleAt=Math.random()<.65?T+rand(.5,Math.max(.6,biteAt-T-.6)):-1;}
+function hookTap(){
+  const s=S.fish.sub;
+  if(s==='wait'||s==='cast'){say('旁白','還沒咬鉤，浮標只是被水推了一下。再等等。',true);tone(N.C5,.08,'sine',.04);return;}
+  if(s==='bite')startReel();
+}
+function onBite(){
+  const f=pick(S.sea);S.fish.target=f.id;
+  tone(N.A5,.1,'square',.045);tone(N.A5,.1,'square',.045,.13);
+  ring(250,194);
+  renderActions();renderWorm();setFace('sparkle');
+  say('旁白',`浮標沉下去了！是第 ${f.gen} 條！快收竿！`,true);
+}
+function missBite(){
+  S.fish.sub='idle';
+  say('旁白','牠吐掉魚鉤游走了⋯⋯這次不算，牠還在海裡。再拋一次。');
+  setFace('worried',1400);
+  renderActions();renderWorm();save();
+}
+function startReel(){
+  const f=targetFish();if(!f){S.fish.sub='idle';renderAll();return;}
+  S.fish.sub='reel';
+  Object.assign(R,{z:.35,zv:0,f:.5,ft:.55,timer:.4,p:.3,w:.3,hold:false,diff:clamp(.85+(fishW(f)-3)*.12,.8,1.4)});
+  tone(N.C5,.1,'triangle',.08);tone(N.G5,.12,'triangle',.07,.08);
+  say('爸爸',f.misses===2?'這是牠最後一次機會了。手穩一點，按住收線。':'手穩一點，不要急。按住收線，讓粉紅色的框套住牠。');
+  renderAll();
+}
+function updateReel(dt){
+  R.zv+=(R.hold?2.6:-2.1)*dt;R.zv=clamp(R.zv,-1.2,1.2);R.z+=R.zv*dt;
+  if(R.z<0){R.z=0;if(R.zv<0)R.zv=0;}
+  if(R.z>1-R.w){R.z=1-R.w;if(R.zv>0)R.zv=0;}
+  R.timer-=dt;if(R.timer<=0){R.ft=rand(.04,.96);R.timer=rand(.45,1.25)/R.diff;}
+  R.f+=(R.ft-R.f)*Math.min(1,dt*2.4*R.diff);
+  const inside=R.f>=R.z&&R.f<=R.z+R.w;
+  R.p=clamp(R.p+(inside?.27:-.17)*dt,0,1);
+  const zone=$('#zone');zone.style.left=(R.z*100)+'%';zone.style.width=(R.w*100)+'%';zone.classList.toggle('in',inside);
+  const rf=$('#rfish');rf.style.left=(R.f*100)+'%';rf.style.transform=`translate(-50%,-50%) scaleX(${R.ft>=R.f?1:-1})`;
+  $('#prog').style.width=(R.p*100)+'%';
+  if(R.p>=1)catchIt();else if(R.p<=0)loseIt();
+}
+function catchIt(){
+  const f=targetFish();R.hold=false;
+  if(!f){S.fish.sub='idle';renderAll();return;}
+  const w=fishW(f);
+  S.sea=S.sea.filter(x=>x.id!==f.id);
+  S.catch={id:f.id,gen:f.gen,w,female:Math.random()<.55};
+  S.fish.sub='caught';S.fish.target=null;jumpT0=T;
+  S.rec.caught++;S.rec.best=Math.max(S.rec.best||0,w);
+  for(let i=0;i<10;i++)spawn('dot',250+rand(-14,14),205,{vy:rand(-120,-60),vx:rand(-50,50),g:300,life:.8,r:rand(1.6,3),cls:'f-hl'});
+  for(let i=0;i<6;i++)spawn('spark',230+rand(-40,40),110+rand(-30,30),{vy:rand(-20,10),life:1.2});
+  chime([N.C5,N.D5,N.E5,N.G5,N.A5,N.C6],.08,'triangle',.08);
+  const grew=Math.round((w-f.w)*10)/10;
+  says([['旁白',`釣到了！第 ${f.gen} 條，${w.toFixed(1)} kg${grew>=.1?`，在海裡又長了 ${grew.toFixed(1)} kg`:''}。銀色的身體在雪裡閃閃發光。`],['蟲蟲','！！！！！！',3200],['爸爸','抓到了。手給我看看，有沒有被線勒到。',2600]]);
+  renderAll();save();
+}
+function loseIt(){
+  const f=targetFish();R.hold=false;
+  chime([N.E5,N.D5,N.C5],.12,'sine',.07);
+  if(!f){S.fish.sub='lost';renderAll();return;}
+  f.misses++;
+  if(f.misses>=3){
+    S.sea=S.sea.filter(x=>x.id!==f.id);S.rec.released++;S.fish.sub='released';S.fish.target=null;
+    for(let i=0;i<8;i++)spawn('bub',250+rand(-30,30),205+rand(-6,6),{vy:rand(-50,-20),life:1.2,r:rand(2,4)});
+    says([
+      ['旁白',`第 ${f.gen} 條第三次掙脫了。鼠鼠鬆開釣線，讓牠回到大海，以後不再釣牠了。`],
+      ['蟲蟲','⋯⋯牠走了。蟲⋯⋯蟲需要躺一下。',4200],
+      ['爸爸','牠贏了，讓牠自由吧。妳也很努力了。',3600]
+    ]);
+  }else{
+    S.fish.sub='lost';S.fish.target=null;
+    const l=[['旁白',`第 ${f.gen} 條掙脫了（${f.misses}/3）。牠滑回水裡，還在海裡。`]];
+    if(f.misses===2)l.push(['蟲蟲','再跑一次牠就自由了。蟲在發抖。',3000]);
+    l.push(['爸爸','沒事，牠哪裡都不會去。深呼吸，再來一次。',f.misses===2?3000:2600]);
+    says(l);
+  }
+  renderAll();save();
+}
+function storeCatch(){
+  const c=S.catch;if(!c)return;
+  const meat=Math.round(c.w*620/10)*10,roe=c.female?Math.round(c.w*rand(.1,.15)*100)*10:0;
+  S.store.push({id:c.id,gen:c.gen,w:c.w,meat,roe,init:meat,day:today()});
+  S.catch=null;S.fish.sub='idle';S.tab='freezer';
+  clearFx();
+  blip(700,300,.3,.05);tone(N.E6,.12,'triangle',.05,.2);
+  const first=!S.flags.fz;S.flags.fz=true;
+  const l=[['旁白',`爸爸把第 ${c.gen} 條處理好了：鮭魚肉 ${fmtG(meat)}${roe?`、鮭魚卵 ${fmtG(roe)}`:'。這條是公的，沒有鮭魚卵'}，真空包好送進 −35°C 的冷鏈倉。`]];
+  if(first){l.push(['旁白',FZ_FACT,5600]);l.push(['蟲蟲','⋯⋯寄生蟲。凍死。（在宿主腦袋裡瑟瑟發抖）',5600]);}
+  else l.push(['蟲蟲',pick(['又凍了一條。蟲把自己捲緊一點。','囤貨的感覺，好安心。','冷鏈倉越滿，蟲越安心。也越冷。']),5200]);
+  says(l);
+  renderAll();save();
+  const i=Math.min(S.store.length-1,9),x=116+(i%5)*46+20,y=(i<5?112:190)-18;
+  for(let k=0;k<8;k++)spawn('spark',x+rand(-22,22),y+rand(-12,10),{vy:rand(-30,-8),life:1.1,s:.8});
+}
+function updateRiver(dt){
+  const sm=reduceMotion?.4:1;
+  for(const f of SNOW){f.y+=f.v*dt*sm;f.x+=Math.sin(T*.8+f.p)*8*dt*sm;if(f.y>272){f.y=-4;f.x=rand(0,360);}f.el.setAttribute('cx',f.x.toFixed(1));f.el.setAttribute('cy',f.y.toFixed(1));}
+  const nShown=Math.min(S.sea.length,SHAD.length);
+  SHAD.forEach((s,i)=>{
+    if(i>=nShown){s.el.style.display='none';return;}
+    s.el.style.display='';
+    const x=240+Math.sin(T*.3*s.sp+s.off)*100,y=s.y+Math.sin(T*.5+s.off)*4;
+    s.el.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+  });
+  let bx=200,by=104,showBob=true,shX=null;
+  const sub=S.fish.sub;
+  if(sub==='cast'){
+    const t=clamp((T-castT0)/.55,0,1);bx=200+50*t;by=lerp(104,184,t)-Math.sin(t*Math.PI)*46;
+    if(t>=1){S.fish.sub='wait';scheduleBite();ring(250,190);blip(520,260,.12,.05);renderActions();}
+  }else if(sub==='wait'){
+    bx=250;let dip=0;
+    if(nibbleAt>0&&T>=nibbleAt){nibbleT=T;nibbleAt=-1;ring(250,190);}
+    if(T-nibbleT<.25)dip=3.5*Math.sin((T-nibbleT)/.25*Math.PI);
+    by=184+Math.sin(T*2.2)*1.4+dip;shX=250+Math.sin(T*.7)*46;
+    if(T>=biteAt){S.fish.sub='bite';biteEnd=T+1.1;onBite();}
+  }else if(sub==='bite'){
+    bx=250+Math.sin(T*28)*1.2;by=193+Math.sin(T*22)*1.6;shX=250;
+    if(T>biteEnd)missBite();
+  }else if(sub==='reel'){
+    updateReel(dt);bx=250+(R.f-.5)*36;by=190+Math.sin(T*16)*1.8;shX=150+R.f*180;
+  }else if(sub==='caught'){showBob=false;}
+  $('#bang').style.display=S.fish.sub==='bite'?'':'none';
+  const sh=$('#shadowFish');
+  if(shX!=null){sh.style.display='';sh.setAttribute('transform',`translate(${shX.toFixed(1)} ${(214+Math.sin(T*3)*3).toFixed(1)})`);}else sh.style.display='none';
+  const bob=$('#bobber'),line=$('#line');
+  if(showBob){
+    bob.style.display='';bob.setAttribute('transform',`translate(${bx.toFixed(1)} ${by.toFixed(1)})`);
+    const ey=by-12;line.setAttribute('d',`M196 86Q${((196+bx)/2).toFixed(1)} ${(Math.max(86,ey)+14).toFixed(1)} ${bx.toFixed(1)} ${ey.toFixed(1)}`);
+  }else bob.style.display='none';
+  const jf=$('#jumpFish'),tag=$('#jumpTag');
+  if(S.fish.sub==='caught'){
+    const t=clamp((T-jumpT0)/.75,0,1),e=1-Math.pow(1-t,3);
+    const x=lerp(250,226,e),y=lerp(206,124,e),rot=-55*(1-e)+Math.sin(T*7)*5*e;
+    jf.style.display='';jf.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)}) scale(-1.05 1.05)`);
+    line.setAttribute('d',`M196 86L${(x-26).toFixed(1)} ${(y-6).toFixed(1)}`);
+    tag.style.display=t>=1?'':'none';tag.setAttribute('transform',`translate(${x.toFixed(1)} ${(y-34).toFixed(1)})`);
+  }else{jf.style.display='none';tag.style.display='none';}
+}
+
+/* ---------- 冷鏈倉 ---------- */
+function updateFreezer(dt){
+  const sm=reduceMotion?.4:1;
+  for(const m of MIST){m.y+=m.v*dt*sm;m.x+=Math.sin(T*.6+m.p)*5*dt*sm;if(m.y>236){m.y=-3;m.x=rand(0,360);}m.el.setAttribute('cx',m.x.toFixed(1));m.el.setAttribute('cy',m.y.toFixed(1));}
+}
+function renderPacks(){
+  let h='';
+  S.store.slice(0,10).forEach((e,i)=>{
+    const x=116+(i%5)*46,by=i<5?112:190,fr=e.init?clamp(e.meat/e.init,0,1):0,hg=e.meat>0?Math.round(10+20*fr):0;
+    let s=`<g transform="translate(${x} ${by})">`;
+    if(hg){
+      s+=`<rect x="0" y="${-hg}" width="40" height="${hg}" rx="6" class="f-salmon"/>`;
+      s+=`<path d="M9 ${-hg+4}q5 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}M21 ${-hg+4}q5 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}M33 ${-hg+4}q4 ${(hg/4).toFixed(1)} 0 ${(hg/2).toFixed(1)}" class="f-none s-fat" stroke-width="2" stroke-linecap="round" opacity=".9"/>`;
+      s+=`<rect x="-1.5" y="${-hg-1.5}" width="43" height="${hg+1.5}" rx="7" class="f-hl s-steel" stroke-width="1" opacity=".28"/>`;
+      if(hg>=18)s+=`<rect x="3" y="${-hg+3}" width="18" height="11" rx="2" class="f-hl"/><text x="12" y="${-hg+11.5}" font-size="8.5" text-anchor="middle" class="f-eye">${e.gen}</text>`;
+    }
+    if(e.roe>0)s+=`<g transform="translate(${hg?35:20} 0)"><rect x="-6" y="-15" width="12" height="15" rx="3" class="f-roe"/><rect x="-7" y="-18" width="14" height="4" rx="2" class="f-rosed"/><circle cx="-2" cy="-9" r="1.4" class="f-hl" opacity=".7"/></g>`;
+    h+=s+'</g>';
+  });
+  if(S.store.length>10)h+=`<text x="346" y="182" text-anchor="end" font-size="11" class="f-inks">+${S.store.length-10}</text>`;
+  $('#packs').innerHTML=h;
+  $('#packsEmpty').style.display=S.store.length?'none':'';
+}
+
+/* ---------- 分出去 ---------- */
+let shareOpen=false;
+const SHARE={
+  cat:{name:'分給蛋撻',label:'50 g 煮熟'},
+  gege:{name:'分給哥哥',label:'最早那一整包'},
+  papa:{name:'分給爸爸',label:'300 g'}
+};
+function shareIcon(k){
+  if(k==='cat')return `<svg viewBox="0 0 64 44" aria-hidden="true"><path d="M19 18L21 5L30 13ZM45 18L43 5L34 13Z" class="f-eye"/><ellipse cx="32" cy="25" rx="16" ry="14" class="f-eye"/><ellipse cx="25.5" cy="24" rx="2.8" ry="3.4" class="f-gold"/><ellipse cx="38.5" cy="24" rx="2.8" ry="3.4" class="f-gold"/><path d="M30.6 29.5h2.8l-1.4 1.8z" class="f-nose"/></svg>`;
+  if(k==='gege')return `<svg viewBox="0 0 64 44" aria-hidden="true"><path d="M32 15C24 9 14 15 16 26C18 37 26 41 32 38C38 41 46 37 48 26C50 15 40 9 32 15Z" class="f-rose"/><path d="M32 15C32 11 33 8 35 6" class="f-none s-char" stroke-width="2" stroke-linecap="round"/><path d="M34 10C38 6 43 7 44 9C41 12 37 12 34 10Z" class="f-mintd"/><ellipse cx="24" cy="22" rx="3" ry="5" class="f-hl" opacity=".45" transform="rotate(20 24 22)"/></svg>`;
+  return `<svg viewBox="0 0 64 44" aria-hidden="true"><ellipse cx="32" cy="32" rx="27" ry="9" class="f-plate s-rose" stroke-width="2"/><path d="M17 27C17 17 30 13 40 16C48 19 48 29 40 32C32 35 17 34 17 27Z" class="f-salmon"/><path d="M23 21l6 10M31 18l6 11M39 19l4 8" class="f-none s-char" stroke-width="2.2" stroke-linecap="round" opacity=".6"/></svg>`;
+}
+function shareTo(k){
+  const tm=totalMeat();if(!tm)return;
+  shareOpen=false;
+  const r=S.rec;r.shared=r.shared||{cat:0,gege:0,papa:0};
+  if(k==='cat'){
+    const g=Math.min(50,tm);consume(g,0);r.shared.cat++;
+    says([['旁白',`爸爸把 ${g} g 鮭魚煮熟，不加調味，放進蛋撻的碗裡。蛋撻吃完舔了舔嘴，看了鼠鼠一眼，就走掉了。`],['旁白','貓可以吃煮熟、沒有調味的鮭魚，少量當點心就好。',5200],['蟲蟲','給貓可以。貓是自己人。',4200]]);
+  }else if(k==='gege'){
+    const e=S.store.find(x=>x.meat>0);if(!e)return;
+    S.store=S.store.filter(x=>x!==e);r.shared.gege++;
+    says([['旁白',`鼠鼠把第 ${e.gen} 條剩下的一整包分給了哥哥：鮭魚肉 ${fmtG(e.meat)}${e.roe?`、鮭魚卵 ${fmtG(e.roe)}`:''}。`],['蟲蟲','⋯⋯那是蟲的存糧。',4600],['爸爸','給他可以。下次最大的那條留給我。',3400]]);
+  }else{
+    const g=Math.min(300,tm);consume(g,0);r.shared.papa++;
+    says([['旁白',`爸爸拿了 ${g} g 做鹽烤鮭魚，吃了大半，把最好吃的那塊魚腹夾給鼠鼠。`],['爸爸','嗯，好吃。妳養得好。',4400],['蟲蟲','蟲分到了魚腹。蟲原諒爸爸。',3400]]);
+  }
+  chime([N.E5,N.G5,N.E5,N.C6],.08,'sine',.07);
+  for(let i=0;i<8;i++)spawn('heart',rand(130,330),rand(70,180),{vy:rand(-34,-16),life:1.3});
+  renderAll();save();
+}
+
+/* ---------- 餐桌 ---------- */
+function chooseDish(k){
+  if(S.meal.state==='eating'||!DISHES[k])return;
+  if(totalMeat()<NEED[k]){say('旁白','冷鏈倉的鮭魚不夠做這一道了。');return;}
+  const roe=k==='don'&&totalRoe()>=ROE_NEED;
+  const src=consume(NEED[k],roe?ROE_NEED:0);
+  S.meal={state:'eating',dish:k,gone:[],roe};
+  chime([N.E5,N.G5,N.C6],.07,'sine',.07);
+  const line=k==='don'&&!roe?'冷鏈倉裡沒有鮭魚卵了，爸爸做了一碗鋪滿鮭魚片的鮭魚丼。':DISHES[k].line;
+  says([['旁白',`${line}用的是第 ${src} 條，解凍得剛剛好。點盤子裡的鮭魚就能吃掉一塊。`],['爸爸','慢慢吃，不要噎到。',4600]]);
+  renderAll();save();
+}
+function eatPiece(i){
+  if(S.tab!=='table'||S.meal.state!=='eating')return;
+  const n=mealN(),m=S.meal;
+  if(i==null){for(let k=0;k<n;k++)if(!m.gone.includes(k)){i=k;break;}}
+  if(i==null||m.gone.includes(i))return;
+  const el=svg.querySelector(`#dish .piece[data-i="${i}"]`);if(!el)return;
+  m.gone.push(i);save();
+  const x0=+el.dataset.x,y0=+el.dataset.y,r0=+el.dataset.r||0,tx=180,ty=136;
+  el.style.pointerEvents='none';
+  tween(.32,t=>{const e=t*t;el.setAttribute('transform',`translate(${lerp(x0,tx,e).toFixed(1)} ${(lerp(y0,ty,e)-Math.sin(t*Math.PI)*24).toFixed(1)}) rotate(${(r0*(1-t)).toFixed(1)}) scale(${(1-e*.65).toFixed(3)})`);},
+    ()=>{el.remove();chomp();if(m.gone.length>=n)setTimeout(finishEat,650);});
+}
+function chomp(){
+  setFace('chomp',380);
+  tone(N.G3,.09,'triangle',.14);tone(N.C4,.07,'triangle',.08,.06);
+  spawn('text',180+rand(-36,36),92,{text:pick(BITES),vy:-26,vx:rand(-8,8),life:1,size:14});
+  for(let i=0;i<4;i++)spawn('dot',180+rand(-6,6),138,{vy:rand(-60,-20),vx:rand(-50,50),g:260,life:.6,r:1.8,cls:'f-salmon'});
+}
+function finishEat(){
+  const m=S.meal;if(m.state!=='eating')return;
+  m.state='done';
+  const r=S.rec;r.meals++;r.dishes[m.dish]=(r.dishes[m.dish]||0)+1;
+  chime([N.G4,N.C5,N.E5,N.G5,N.C6],.1,'sine',.08);
+  for(let i=0;i<5;i++)spawn('heart',180+rand(-44,44),104+rand(-10,10),{vy:rand(-34,-18),life:1.4,s:1.2});
+  const left=totalMeat();
+  says([
+    ['旁白',`吃光光了 ՞-ㅅ-՞ ${left>0?`冷鏈倉還有 ${fmtG(left)}。`:'冷鏈倉也空了。'}鮭魚蟲吃飽了，在腦袋裡縮成一團睡著了。（暫時）`],
+    ['爸爸','吃乾淨了，乖。過來，擦擦嘴。',4800]
+  ]);
+  renderAll();save();
+}
+
+/* ---------- rendering ---------- */
+function renderTabs(){
+  document.querySelectorAll('#tabs .tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===S.tab)));
+  const bs=$('#bdSea');bs.hidden=!S.sea.length;bs.textContent=S.sea.length;
+  const bf=$('#bdFz'),tm=totalMeat();bf.hidden=!S.store.length;bf.textContent=(tm/1000).toFixed(1);
+}
+function renderMeters(){
+  if(S.tab!=='tank')return;
+  const tk=S.tank,setM=(k,v,label)=>{$('#m'+k).style.width=clamp(v,0,100)+'%';$('#v'+k).textContent=label;};
+  setM('Clean',tk.clean,Math.round(tk.clean));
+  setM('Mood',tk.mood,Math.round(tk.mood));
+  setM('Grow',tk.stage===5?100:tk.growth,tk.stage===5?'長大了':Math.floor(tk.growth)+'%');
+  $('#mtClean').classList.toggle('low',tk.clean<30);
+  $('#mtMood').classList.toggle('low',tk.mood<25);
+  const tc=$('#tempChip');
+  if(tk.stage===0){
+    tc.style.display='';
+    $('#tempTxt').textContent=`水溫 ${tk.temp.toFixed(1)}°C`;
+    $('#tempDot').setAttribute('class',tk.temp>9?'f-rose':tk.temp<2.5?'f-rim':'f-wbot');
+  }else tc.style.display='none';
+}
+function renderActions(){
+  const a=$('#actions');let h='',cls='one';
+  const t=S.tab;
+  if(t==='tank'){
+    const d=STAGES[S.tank.stage];
+    if(S.tank.stage===5)h=btn('primary',d.act,d.icon,'primary');
+    else{cls='three';h=btn('primary',d.act,d.icon,'primary')+btn('clean','換水','drop')+btn('pet','摸摸','heart');}
+  }else if(t==='river'){
+    const s=S.fish.sub;
+    if(s==='caught')h=btn('store','送進冷鏈倉','snow','primary');
+    else if(s==='cast'||s==='wait')h=btn('hook','等牠咬鉤⋯','rod','');
+    else if(s==='bite')h=btn('hook','收竿！','rod','primary urgent');
+    else if(s==='reel')h=`<button class="btn primary hold" id="holdBtn" type="button">${ico('rod')}<span>按住收線</span></button>`;
+    else if(S.sea.length)h=btn('cast',s==='idle'?'拋竿':'再拋一次','rod','primary');
+    else h=btn('goTank','回魚缸養一條','heart','primary');
+  }else if(t==='table'){
+    const m=S.meal,tm=totalMeat();
+    if(m.state==='eating')h=btn('bite','吃一口','bowl','primary');
+    else if(m.state==='done'){
+      if(tm>=MIN_NEED){cls='two';h=btn('more','再來一份','bowl','primary')+btn('goFreezer','看冷鏈倉','box');}
+      else h=S.sea.length?btn('goRiver','去河口釣一條','rod','primary'):btn('goTank','回魚缸養一條','heart','primary');
+    }else if(tm<MIN_NEED){
+      h=S.sea.length?btn('goRiver','去河口釣一條','rod','primary'):btn('goTank','回魚缸養一條','heart','primary');
+    }else{
+      cls='dishes';const roe=totalRoe()>=ROE_NEED;
+      h=Object.keys(DISHES).map(k=>`<button class="dishbtn" type="button" data-act="dish" data-k="${k}"${tm<NEED[k]?' disabled':''}>${dishIcon(k,k!=='don'||roe)}<span>${dishName(k,roe)}</span><small>${NEED[k]} g${k==='don'&&roe?` + 卵 ${ROE_NEED} g`:''}</small></button>`).join('');
+    }
+  }else{
+    const tm=totalMeat(),hasPack=S.store.some(e=>e.meat>0);
+    if(shareOpen&&hasPack){
+      cls='dishes';
+      const ok={cat:tm>=50,gege:hasPack,papa:tm>=150};
+      h=Object.keys(SHARE).map(k=>`<button class="dishbtn" type="button" data-act="share" data-k="${k}"${ok[k]?'':' disabled'}>${shareIcon(k)}<span>${SHARE[k].name}</span><small>${SHARE[k].label}</small></button>`).join('')
+        +`<button class="btn" type="button" data-act="shareBack" style="grid-column:1/-1;min-height:44px;font-size:14px">不分了</button>`;
+    }else if(hasPack&&tm>=MIN_NEED){cls='three';h=btn('goTable','去餐桌吃','bowl','primary')+btn('shareOpen','分出去','heart')+btn('goRiver','去河口','rod');}
+    else if(hasPack){cls='two';h=btn('shareOpen','分出去','heart','primary')+btn('goRiver','去河口','rod');}
+    else h=S.sea.length?btn('goRiver','去河口釣一條','rod','primary'):btn('goTank','回魚缸養一條','heart','primary');
+  }
+  a.className='actions '+cls;a.innerHTML=h;
+  if(t==='river'&&S.fish.sub==='reel')bindHold();
+}
+function renderChips(){
+  const t=S.tab;let s;
+  if(t==='tank')s=`第 ${S.tank.gen} 條 · ${STAGES[S.tank.stage].name}`;
+  else if(t==='river')s=S.catch?`第 ${S.catch.gen} 條 · ${S.catch.w.toFixed(1)} kg`:`海裡 ${S.sea.length} 條`;
+  else if(t==='table')s=S.meal.state!=='choose'&&S.meal.dish?dishName(S.meal.dish,S.meal.roe):`庫存 ${fmtG(totalMeat())}`;
+  else s=`−35°C · ${fmtG(totalMeat())}`;
+  $('#stageChip').textContent=s;
+}
+function renderStages(){
+  const cur=S.tank.stage;
+  $('#journeyLbl').textContent=`魚缸裡第 ${S.tank.gen} 條的成長`;
+  $('#stages').innerHTML=STEPS.map((n,i)=>`<li class="${i<cur?'done':i===cur?'now':''}"><i></i><span>${n}</span></li>`).join('');
+}
+function renderRecord(){
+  const r=S.rec;
+  $('#rSea').textContent=S.sea.length;
+  $('#rStore').textContent=(totalMeat()/1000).toFixed(1);
+  $('#rMeals').textContent=r.meals;
+  $('#rCaught').textContent=r.caught;
+  $('#rReleased').textContent=r.released;
+  $('#rBest').textContent=r.best?r.best.toFixed(1):'—';
+  const fav=Object.entries(r.dishes).sort((a,b)=>b[1]-a[1])[0];
+  $('#rFav').textContent=fav&&fav[1]>0?DISHES[fav[0]].name:'還沒吃過';
+  const sh=r.shared||{},parts=[];
+  if(sh.cat)parts.push(`蛋撻 ${sh.cat} 次`);if(sh.gege)parts.push(`哥哥 ${sh.gege} 包`);if(sh.papa)parts.push(`爸爸 ${sh.papa} 份`);
+  $('#rShareWrap').hidden=!parts.length;$('#rShare').textContent=parts.join('、');
+}
+function renderPanel(){
+  const p=$('#panel');
+  if(S.tab==='river'){
+    p.hidden=false;const n=S.sea.length;
+    p.innerHTML=`<h3><span>海裡的鮭魚</span><span>${n} 條</span></h3>`+(n
+      ?`<div class="sea-list">${S.sea.map(f=>`<span class="fishpill">${miniFish()}第 ${f.gen} 條 · ${fishW(f).toFixed(1)} kg<span class="miss" aria-label="掙脫 ${f.misses} 次">${[0,1,2].map(i=>`<i class="${i<f.misses?'on':''}"></i>`).join('')}</span></span>`).join('')}</div><p class="note">海裡的鮭魚會慢慢長大。粉紅點是掙脫的次數，同一條掙脫三次就會被放生。</p>`
+      :`<p class="empty">海裡還沒有鮭魚。把魚缸裡的小鮭養大、放進大海，牠就會出現在這裡。</p>`);
+  }else if(S.tab==='freezer'){
+    p.hidden=false;const first=S.store.findIndex(e=>e.meat>0),tr=totalRoe();
+    p.innerHTML=`<h3><span>庫存 · −35°C</span><span>${fmtG(totalMeat())}${tr?` · 卵 ${fmtG(tr)}`:''}</span></h3>`+(S.store.length
+      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">第 ${e.gen} 條 · ${e.w.toFixed(1)} kg</div><div class="sub">鮭魚肉 ${fmtG(e.meat)}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
+      :`<p class="empty">冷鏈倉空空的。去河口釣一條，爸爸會處理好放進來。</p>`);
+  }else p.hidden=true;
+}
+function renderScene(){
+  const t=S.tab;
+  $('#L-raise').style.display=t==='tank'?'':'none';
+  $('#L-river').style.display=t==='river'?'':'none';
+  $('#L-freezer').style.display=t==='freezer'?'':'none';
+  $('#L-tablebg').style.display=t==='table'?'':'none';
+  $('#L-table').style.display=t==='table'?'':'none';
+  $('#scarf').style.display=t==='freezer'?'':'none';
+  $('#wormScarf').style.display=t==='freezer'?'':'none';
+  $('#meters').hidden=t!=='tank';
+  $('#reel').hidden=!(t==='river'&&S.fish.sub==='reel');
+  if(t==='tank')$fish.innerHTML=fishMarkup(S.tank.stage);
+  if(t==='river'&&S.catch)$('#jumpTxt').textContent=S.catch.w.toFixed(1)+' kg';
+  if(t==='table'){
+    const eating=S.meal.state==='eating',don=eating&&S.meal.dish==='don';
+    $('#plate').style.display=don?'none':'';
+    $('#bowl').style.display=don?'':'none';
+    $('#dish').innerHTML=eating?dishMarkup():(S.meal.state==='done'&&S.meal.dish==='sashimi'?`<g transform="translate(254 210)"><path d="M-13 0A13 13 0 0 1 13 0Z" class="f-lemon"/><path d="M0 0V-10M0 0L-7-7M0 0L7-7" class="f-none s-hl" stroke-width="1.3"/></g>`:'');
+  }
+  if(t==='freezer')renderPacks();
+}
+function renderAll(){
+  renderTabs();renderScene();renderActions();renderMeters();renderChips();renderStages();renderRecord();renderPanel();renderWorm();showFace(baseFace());
+  const sb=$('#soundBtn');sb.textContent=S.mute?'聲音 關':'聲音 開';sb.setAttribute('aria-pressed',String(!S.mute));
+}
+
+/* ---------- moving between places ---------- */
+function setTab(t){
+  if(t===S.tab)return;
+  if(S.tab==='river'&&['cast','wait','bite','reel'].includes(S.fish.sub)){S.fish.sub='idle';S.fish.target=null;R.hold=false;}
+  if(S.tab==='river'&&(S.fish.sub==='lost'||S.fish.sub==='released'))S.fish.sub='idle';
+  S.tab=t;clearFx();shareOpen=false;
+  if(t==='table'&&S.meal.state==='done')S.meal={state:'choose',dish:null,gone:[],roe:false};
+  if(t==='tank'){F.x=180;F.y=150;pickTarget();}
+  tone(N.C5,.08,'sine',.04);
+  renderAll();save();
+  enterLine();
+}
+function enterLine(){
+  const t=S.tab;
+  if(t==='tank')say('旁白',`魚缸裡的第 ${S.tank.gen} 條，現在是${STAGES[S.tank.stage].name}。`);
+  else if(t==='river'){
+    if(S.catch)say('旁白','剛釣到的鮭魚還在鼠鼠手上，送進冷鏈倉吧。');
+    else if(S.sea.length)say('旁白',`鼠鼠來到河口，雪還在下。海裡有 ${S.sea.length} 條鮭魚。`);
+    else says([['旁白','海裡空空的，一條鮭魚都沒有。'],['蟲蟲','⋯⋯蟲看著海。海也看著蟲。',2600]]);
+  }else if(t==='table'){
+    if(S.meal.state==='eating')say('旁白','盤子裡還有幾口，慢慢吃。');
+    else if(totalMeat()>=MIN_NEED)say('爸爸','想怎麼吃？爸爸從冷鏈倉拿出來給妳做。');
+    else says([['爸爸','冷鏈倉沒有鮭魚了，先去河口釣一條。'],['蟲蟲','餓。',2400]]);
+  }else{
+    if(S.store.length)says([['旁白',`冷鏈倉裡有 ${S.store.length} 包鮭魚，一共 ${fmtG(totalMeat())}${totalRoe()?`，還有鮭魚卵 ${fmtG(totalRoe())}`:''}。`],['蟲蟲',pick(['好冷。蟲要冬眠了。','（把自己捲成一圈取暖）','囤貨的感覺，好安心。']),3200]]);
+    else says([['旁白','冷鏈倉空空的，只有冷氣在嗡嗡響。'],['蟲蟲','空倉焦慮。',2400]]);
+  }
+}
+
+/* ---------- input ---------- */
+let holdEl=null;
+function holdOff(){R.hold=false;if(holdEl)holdEl.classList.remove('down');}
+function bindHold(){
+  holdEl=$('#holdBtn');const tr=$('#track');
+  [holdEl,tr].forEach(el=>{
+    el.addEventListener('pointerdown',e=>{e.preventDefault();try{el.setPointerCapture(e.pointerId);}catch(_){}R.hold=true;holdEl.classList.add('down');});
+    el.addEventListener('pointerup',holdOff);
+    el.addEventListener('pointercancel',holdOff);
+    el.addEventListener('lostpointercapture',holdOff);
+    el.addEventListener('contextmenu',e=>e.preventDefault());
+  });
+}
+window.addEventListener('pointerup',holdOff);
+document.addEventListener('keydown',e=>{if(S.tab==='river'&&S.fish.sub==='reel'&&(e.code==='Space'||e.key==='Enter')){e.preventDefault();R.hold=true;if(holdEl)holdEl.classList.add('down');}});
+document.addEventListener('keyup',e=>{if(e.code==='Space'||e.key==='Enter')holdOff();});
+
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)setTab(b.dataset.tab);});
+$('#actions').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  switch(b.dataset.act){
+    case 'primary':primary();break;
+    case 'clean':cleanWater();break;
+    case 'pet':pet();break;
+    case 'cast':cast();break;
+    case 'hook':hookTap();break;
+    case 'store':storeCatch();break;
+    case 'dish':chooseDish(b.dataset.k);break;
+    case 'bite':eatPiece(null);break;
+    case 'more':S.meal={state:'choose',dish:null,gone:[],roe:false};renderAll();say('爸爸','還要？好，再做一份。這次想怎麼吃？');save();break;
+    case 'shareOpen':shareOpen=true;renderActions();says([['旁白','要把冷鏈倉裡的鮭魚分給誰？'],['蟲蟲','分⋯⋯分出去？',2200]]);break;
+    case 'shareBack':shareOpen=false;renderActions();say('蟲蟲','（鬆了一口氣）',true);break;
+    case 'share':shareTo(b.dataset.k);break;
+    case 'goTank':setTab('tank');break;
+    case 'goRiver':setTab('river');break;
+    case 'goTable':setTab('table');break;
+    case 'goFreezer':setTab('freezer');break;
+  }
+});
+svg.addEventListener('click',e=>{
+  if(S.tab==='tank'&&e.target.closest('#fish'))pet();
+  else if(S.tab==='river'&&['wait','bite','cast'].includes(S.fish.sub))hookTap();
+  else if(S.tab==='table'){const p=e.target.closest('.piece');if(p)eatPiece(+p.dataset.i);}
+});
+const encSave=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+const decSave=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/\s+/g,'')))));
+let loadArmed=false,armT=0;
+$('#copySave').addEventListener('click',()=>{
+  const code=encSave(S),ta=$('#saveCode'),msg=$('#saveMsg');ta.value=code;
+  const fallback=()=>{ta.focus();ta.select();msg.textContent='存檔碼放在上面的框裡了，全選以後複製，收在備忘錄或別的地方。';};
+  try{navigator.clipboard.writeText(code).then(()=>{msg.textContent='存檔碼複製好了，貼到備忘錄或別的地方收好。';},fallback);}catch(e){fallback();}
+});
+$('#loadSave').addEventListener('click',()=>{
+  const b=$('#loadSave'),msg=$('#saveMsg'),v=$('#saveCode').value.trim();
+  if(!v){msg.textContent='先把存檔碼貼進上面的框裡。';return;}
+  let o;try{o=decSave(v);}catch(e){msg.textContent='這串存檔碼讀不出來，檢查一下有沒有複製完整。';return;}
+  const s=migrate(o);migratedNote=null;
+  if(!s){msg.textContent='這不是鮭魚蟲餵養計畫的存檔碼。';return;}
+  if(!loadArmed){
+    loadArmed=true;b.textContent='確定讀入';msg.textContent='讀入會換掉現在這台裝置上的進度。確定的話再按一次。';
+    clearTimeout(armT);armT=setTimeout(()=>{loadArmed=false;b.textContent='讀入存檔碼';},6000);return;
+  }
+  loadArmed=false;clearTimeout(armT);b.textContent='讀入存檔碼';
+  S=s;shareOpen=false;clearFx();F.x=180;F.y=150;pickTarget();renderAll();save();
+  say('旁白',resumeLine());msg.textContent='讀入好了。';
+});
+$('#soundBtn').addEventListener('click',()=>{S.mute=!S.mute;renderAll();save();if(!S.mute)tone(N.C6,.12,'sine',.06);});
+
+/* ---------- loop & boot ---------- */
+let last=performance.now(),T=0,acc=0;
+function frame(now){
+  const dt=Math.min(.05,Math.max(0,(now-last)/1000));last=now;T+=dt;acc+=dt;
+  if(acc>=1){acc-=1;tick();}
+  if(S.tab==='tank')updateRaise(dt);else if(S.tab==='river')updateRiver(dt);else if(S.tab==='freezer')updateFreezer(dt);
+  runTweens(now);updateFx(dt);updateMouse();
+  requestAnimationFrame(frame);
+}
+function resumeLine(){
+  const t=S.tab;
+  if(t==='tank')return `回來啦。魚缸裡的第 ${S.tank.gen} 條，現在是${STAGES[S.tank.stage].name}。海裡有 ${S.sea.length} 條。`;
+  if(t==='river')return S.catch?'剛釣到的鮭魚還在鼠鼠手上亮晶晶的，送進冷鏈倉吧。':`鼠鼠還坐在河口的石頭上，雪慢慢下著。海裡有 ${S.sea.length} 條。`;
+  if(t==='table')return S.meal.state==='eating'?'盤子裡還有幾口，慢慢吃。':'爸爸在廚房，問妳想怎麼吃。';
+  return `冷鏈倉一直開著，−35°C。庫存 ${fmtG(totalMeat())}。`;
+}
+let started=false;
+function start(data){
+  if(started)return;started=true;
+  const raw=(data&&(data.v===1||data.v===2))?data:loadRaw();
+  const s=migrate(raw);
+  buildStatic();
+  if(s)S=s;
+  F.x=180;F.y=150;pickTarget();
+  renderAll();
+  if(migratedNote){
+    const m=migratedNote;S.flags.fz=true;
+    says([
+      ['旁白',`冷鏈倉蓋好了。第 ${m.gens.join('、')} 條吃剩的部分，爸爸已經真空包好放進去：鮭魚肉 ${fmtG(m.meat)}、鮭魚卵 ${fmtG(m.roe)}。`],
+      ['旁白',FZ_FACT,6000],
+      ['蟲蟲','⋯⋯−35°C。寄生蟲。凍死。（在宿主腦袋裡瑟瑟發抖）',5600],
+      ['旁白',S.catch?`剛釣到的第 ${S.catch.gen} 條還在鼠鼠手上，按送進冷鏈倉，牠就會被放到架子上。`:`魚缸裡是第 ${S.tank.gen} 條。養大以後可以放進大海存起來。`,4600]
+    ]);
+    save();
+  }else if(s)say('旁白',resumeLine());
+  else says([['旁白','鼠鼠撿到一顆鮭魚卵，放進了魚缸。鮭魚卵喜歡 4–8°C 的冰水，水溫升高就加冰塊。'],['旁白','仔細看，卵裡有兩顆小黑點，那是牠的眼睛。這個時期叫發眼卵。',5600],['蟲蟲','⋯⋯嗯？（腦袋深處有什麼翻了個身）',5600]]);
+  requestAnimationFrame(t=>{last=t;frame(t);});
+}
+const hot=window.claude&&window.claude.hot;
+try{if(hot&&hot.snapshot)hot.snapshot(()=>S);}catch(e){}
+if(hot&&hot.ready)hot.ready(start);else start((hot&&hot.data)||{});
+})();
+</script>
+
+</body>
+</html>
