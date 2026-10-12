@@ -189,6 +189,9 @@ details[open] > .fold::after{transform:rotate(-135deg);margin-bottom:-3px}
 .store-row .bar{height:6px;border-radius:999px;background:var(--blush);overflow:hidden;margin-top:5px}
 .store-row .bar i{display:block;height:100%;background:var(--salmon);border-radius:999px}
 .fifo{font-size:11px;padding:3px 8px;border-radius:999px;background:var(--rose);color:var(--on-rose);white-space:nowrap}
+.pinbtn{appearance:none;font:inherit;font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);white-space:nowrap;cursor:pointer;touch-action:manipulation}
+.pinbtn.on{background:var(--rose);border-color:var(--rose-deep);color:var(--on-rose)}
+.pinbtn:focus-visible{outline:3px solid var(--rose-deep);outline-offset:2px}
 .note,.empty{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.6}
 .empty{font-size:13.5px}
 
@@ -629,7 +632,7 @@ const btn=(act,label,icon,cls='')=>`<button class="btn ${cls}" type="button" dat
 function freshTank(gen){return {gen,stage:0,growth:0,clean:100,mood:72,temp:6.5,taps:0,good:0,moodSum:0,weight:0,wormJoke:false};}
 function fresh(){
   return {v:2,tab:'tank',mute:false,tank:freshTank(1),sea:[],fish:{sub:'idle',target:null},catch:null,store:[],
-    meal:{state:'choose',dish:null,gone:[],roe:false},flags:{fz:false},claimed:[],savedAt:0,
+    meal:{state:'choose',dish:null,gone:[],roe:false},flags:{fz:false},claimed:[],pin:null,savedAt:0,
     rec:{meals:0,caught:0,released:0,best:0,dishes:{sashimi:0,nigiri:0,don:0},shared:{cat:0,gege:0,papa:0}}};
 }
 let S=fresh();
@@ -640,11 +643,18 @@ const totalRoe=()=>S.store.reduce((a,e)=>a+e.roe,0);
 const fmtG=g=>g>=1000?(g/1000).toFixed(1)+' kg':Math.round(g)+' g';
 const dishName=(k,roe)=>k==='don'&&!roe?'鮭魚丼':DISHES[k].name;
 const mealN=()=>S.meal.dish==='don'&&!S.meal.roe?5:DISHES[S.meal.dish].n;
+function orderedStore(){
+  if(!S.pin)return S.store;
+  const p=S.store.filter(e=>e.id===S.pin);
+  return p.length?p.concat(S.store.filter(e=>e.id!==S.pin)):S.store;
+}
 function consume(meat,roe){
   let src=null;
-  for(const e of S.store){if(meat<=0)break;const u=Math.min(e.meat,meat);if(u>0){e.meat-=u;meat-=u;if(src==null)src=lab(e);}}
-  for(const e of S.store){if(roe<=0)break;const u=Math.min(e.roe,roe);e.roe-=u;roe-=u;}
+  const ord=orderedStore();
+  for(const e of ord){if(meat<=0)break;const u=Math.min(e.meat,meat);if(u>0){e.meat-=u;meat-=u;if(src==null)src=lab(e);}}
+  for(const e of ord){if(roe<=0)break;const u=Math.min(e.roe,roe);e.roe-=u;roe-=u;}
   S.store=S.store.filter(e=>e.meat>0||e.roe>0);
+  if(S.pin&&!S.store.some(e=>e.id===S.pin))S.pin=null;
   return src;
 }
 
@@ -666,6 +676,7 @@ function normalize2(o){
   s.rec=Object.assign(fresh().rec,o.rec||{});s.rec.dishes=Object.assign({sashimi:0,nigiri:0,don:0},(o.rec&&o.rec.dishes)||{});
   s.rec.shared=Object.assign({cat:0,gege:0,papa:0},(o.rec&&o.rec.shared)||{});
   if(!Array.isArray(s.claimed))s.claimed=[];if(!Array.isArray(s.sea))s.sea=[];if(!Array.isArray(s.store))s.store=[];if(!Array.isArray(s.meal.gone))s.meal.gone=[];
+  if(s.pin&&!s.store.some(e=>e.id===s.pin))s.pin=null;
   if(!['tank','river','table','freezer'].includes(s.tab))s.tab='tank';
   if(['cast','wait','bite','reel'].includes(s.fish.sub))s.fish.sub='idle';
   if(s.fish.sub==='caught'&&!s.catch)s.fish.sub='idle';
@@ -1386,13 +1397,31 @@ function renderPanel(){
       ?`<div class="sea-list">${S.sea.map(f=>`<span class="fishpill">${miniFish()}${lab(f)} · ${fishW(f).toFixed(1)} kg<span class="miss" aria-label="掙脫 ${f.misses} 次">${[0,1,2].map(i=>`<i class="${i<f.misses?'on':''}"></i>`).join('')}</span></span>`).join('')}</div><p class="note">海裡的鮭魚會慢慢長大。粉紅點是掙脫的次數，同一條掙脫三次就會被放生。</p>`
       :`<p class="empty">海裡還沒有鮭魚。把魚缸裡的小鮭養大、放進大海，牠就會出現在這裡。</p>`);
   }else{
-    const first=S.store.findIndex(e=>e.meat>0),tr=totalRoe();
+    const ord=orderedStore(),firstE=ord.find(e=>e.meat>0),tr=totalRoe();
     sum.innerHTML=`<span>庫存 · −35°C</span><span class="num">${fmtG(totalMeat())}${tr?` · 卵 ${fmtG(tr)}`:''}</span>`;
     body.innerHTML=(S.store.length
-      ?`<div class="store-list">${S.store.map((e,i)=>`<div class="store-row">${miniFish()}<div><div class="nm">${lab(e)} · ${e.w.toFixed(1)} kg</div><div class="sub">${e.meat>0?`鮭魚肉 ${fmtG(e.meat)}`:'魚肉吃完了'}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${i===first?'<span class="fifo">先吃這條</span>':'<span></span>'}</div>`).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。</p>`
+      ?`<div class="store-list">${S.store.map(e=>{
+          const right=e===firstE
+            ?(S.pin===e.id?'<button class="pinbtn on" type="button" data-pin="-">插隊中</button>':'<span class="fifo">先吃這條</span>')
+            :(e.gen===0&&e.meat>0?`<button class="pinbtn" type="button" data-pin="${e.id}">先吃這條</button>`:'<span></span>');
+          return `<div class="store-row">${miniFish()}<div><div class="nm">${lab(e)} · ${e.w.toFixed(1)} kg</div><div class="sub">${e.meat>0?`鮭魚肉 ${fmtG(e.meat)}`:'魚肉吃完了'}${e.roe?` · 鮭魚卵 ${fmtG(e.roe)}`:''} · ${e.day} 入庫</div><div class="bar"><i style="width:${(e.init?clamp(e.meat/e.init*100,0,100):0).toFixed(0)}%"></i></div></div>${right}</div>`;
+        }).join('')}</div><p class="note">先進先出：最早入庫的那條會先拿出來吃。貼著爸字的那包不用排隊，按「先吃這條」就換牠先上桌。</p>`
       :`<p class="empty">冷鏈倉空空的。去河口釣一條，爸爸會處理好放進來。</p>`);
   }
 }
+function setPin(id){
+  if(id==='-'){
+    S.pin=null;
+    says([['爸爸','放回去了。照順序吃。']]);
+  }else{
+    const e=S.store.find(x=>x.id===id);if(!e||e.meat<=0)return;
+    S.pin=id;
+    says([['旁白',`${lab(e)}被拿到最前面了，下一道就用牠。`],['爸爸','這包本來就不用排隊。想吃就吃。',3200],['蟲蟲','插隊。蟲全力支持。',3200]]);
+  }
+  chime([N.E5,N.G5],.07,'sine',.06);
+  renderPanel();save();
+}
+$('#panelBody').addEventListener('click',e=>{const b=e.target.closest('[data-pin]');if(b)setPin(b.dataset.pin);});
 $('#panel').addEventListener('toggle',()=>{if(panelFor){UI[panelFor]=$('#panel').open;saveUI();}});
 $('#record').open=!!UI.rec;
 $('#record').addEventListener('toggle',()=>{UI.rec=$('#record').open;saveUI();});
